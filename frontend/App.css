@@ -1,0 +1,30 @@
+/* .App {
+  text-align: center;
+} */
+
+
+.HomePageBody {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #ffffff;
+}
+
+/* .Footer {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: rgb(88, 198, 206);
+  color: #fff; 
+} */

@@ -1,0 +1,26 @@
+
+
+.Footer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    padding: 1em;
+    /* margin-bottom: 2em; */
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+  }
+
+  .White-link {
+    color: white;
+    padding: 1em;
+    /* justify-content: 'flex-start'; */
+  }
+
+  .White-link-right {
+    color: white;
+    padding: 1em;
+    align-items: flex-end;
+  }
+
+  /* I dont know if its bad practice to make a bunch of different class names for styling */
