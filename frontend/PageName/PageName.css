@@ -1,7 +1,0 @@
-/*} I want this to be where we handle the diff page titles (If we make it a Component) */
-
-.PageName {
-    font-size: 300%;
-    color: #282c34;
-    display: flex;
-};

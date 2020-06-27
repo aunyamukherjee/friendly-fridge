@@ -1,0 +1,28 @@
+.List-Items-container {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: left;
+    font-size: calc(10px + 2vmin);
+    flex-wrap: wrap;
+
+}
+
+.List-Items {
+    flex: 1;
+    width: 50%;
+    color: black;
+    padding: 1em;
+    margin: 1em;
+    background-color:rgba(163, 184, 193, 0.92); 
+    box-shadow: 3px 3px 3px black;
+    flex-wrap: wrap;  /*so that text will wrap within each card*/
+}
+
+.Food-link {
+    /* color: black; */
+    /* justify-content: center; */
+    /* padding: 1em; */
+}

@@ -6,7 +6,7 @@ const HomePageBody = (props) => {
     return (
         <div className = "HomePageBody">
           <p className = "staticText">
-            Click on one of the food groups to see what you have available!!
+            Click on one of the food groups to see what you have available
           </p>
           <a
             className="App-link"
