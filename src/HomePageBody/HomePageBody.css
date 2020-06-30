@@ -1,24 +1,40 @@
 
 
-.HomePageBody {
-    background-color: #282c34;
-    min-height: 100vh;
+.HomePageBody-conatiner {
+    /* background-color: #282c34; */
+    /* min-height: 100vh; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    width: 500px;
+    flex-wrap: wrap;
+    /* flex-basis: 100%; */
+    /* font-size: calc(10px + 2vmin); */
+    
   };
 
   .staticText {
+    display: flex;
+    flex-direction: column;
     align-items: left;
     justify-content: left;
+    width: 50%;
   };
 
-  .App-link {
+  .Food-Group {
+    display: flex;
     align-items: right;
     justify-content: right;
+    flex-direction: column;
+    color: white;
+    padding: 1em;
+    margin: 1em;
+    background-color:rgba(163, 184, 193, 0.92); 
+    box-shadow: 3px 3px 3px black;
+    flex-wrap: wrap;
+    width: 50%;
+    flex: 1;
   };
 
-  /* idk how to move this to the left */
+/* i am not sure why this wont format into cards when the other FGLV did */

@@ -16,8 +16,11 @@ const App = (props) => {
     return (
       <div>
         <Header className ="Header"/>
-        <FoodGroupListView />
-        {/* <HomePageBody className = "HomePageBody" /> */}
+      <div className = "Body">
+      {/* <FoodGroupListView /> */}
+        <HomePageBody />
+      </div>
+        
         <Footer className = "Footer"/>
       </div>
     );
