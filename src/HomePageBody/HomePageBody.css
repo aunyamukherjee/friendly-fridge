@@ -5,28 +5,28 @@
     /* min-height: 100vh; */
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    width: 500px;
+    /* align-items: flex-start; */
+    /* justify-content: center; */
+    /* width: 500px; */
     flex-wrap: wrap;
     /* flex-basis: 100%; */
     /* font-size: calc(10px + 2vmin); */
     
-  };
+  }
 
   .staticText {
     display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: left; */
     width: 50%;
-  };
+  }
 
   .Food-Group {
     display: flex;
     align-items: right;
     justify-content: right;
-    flex-direction: column;
+    flex-direction: row;
     color: white;
     padding: 1em;
     margin: 1em;
@@ -35,6 +35,6 @@
     flex-wrap: wrap;
     width: 50%;
     flex: 1;
-  };
+  }
 
 /* i am not sure why this wont format into cards when the other FGLV did */

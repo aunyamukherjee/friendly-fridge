@@ -18,9 +18,9 @@ const App = (props) => {
       <div>
         <Header className ="Header"/>
       <div className = "Body">
-        {/* <HomePageBody /> */}
+        <HomePageBody />
         {/* <FoodGroupListView /> */}
-        <AddNewItem />
+        {/* <AddNewItem /> */}
       </div>
         
         <Footer className = "Footer"/>
