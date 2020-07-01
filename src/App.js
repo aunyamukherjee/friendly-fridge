@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
-import "./Footer/Footer.css";
+// import "./Footer/Footer.css";
 // import { render } from '@testing-library/react';
 import HomePageBody from './HomePageBody';
 import FoodGroupListView from "./FoodGroupListView";
+import AddNewItem from "./AddNewItem";
 
 
 const App = (props) => {
@@ -17,8 +18,9 @@ const App = (props) => {
       <div>
         <Header className ="Header"/>
       <div className = "Body">
-      {/* <FoodGroupListView /> */}
-        <HomePageBody />
+        {/* <HomePageBody /> */}
+        {/* <FoodGroupListView /> */}
+        <AddNewItem />
       </div>
         
         <Footer className = "Footer"/>

@@ -1,0 +1,21 @@
+.AddNewItem-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.Title {
+    font-size: 2cm;
+    align-content: center;
+    flex: 1;
+}
+
+.AddNewItems-items {
+    padding: 10px;
+    color: black;
+    box-shadow: 3px 3px 3px black;
+    margin: 1em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color:rgba(163, 184, 193, 0.92);
+}

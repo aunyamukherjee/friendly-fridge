@@ -20,7 +20,8 @@ class Header extends Component {
       {name: 'Home'},
       {name: 'Dairy'},
       {name: 'Veggies'},
-      {name: 'Fruit'}
+      {name: 'Fruit'},
+      {name: 'Add New Item'}
     ],
     otherState: 'some other value'
   }
@@ -36,7 +37,7 @@ class Header extends Component {
         </div>
 
         <div className= "Page-Title">
-          <PageName name = {this.state.titles[0].name}/>  
+          <PageName name = {this.state.titles[4].name}/>  
         </div>
 
         <div className= "Header-button">
