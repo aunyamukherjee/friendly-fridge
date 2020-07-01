@@ -7,6 +7,7 @@ import Footer from './Footer';
 import HomePageBody from './HomePageBody';
 import FoodGroupListView from "./FoodGroupListView";
 import AddNewItem from "./AddNewItem";
+import Login from "./Login";
 
 
 const App = (props) => {
@@ -18,9 +19,10 @@ const App = (props) => {
       <div>
         <Header className ="Header"/>
       <div className = "Body">
-        <HomePageBody />
+        {/* <HomePageBody /> */}
         {/* <FoodGroupListView /> */}
         {/* <AddNewItem /> */}
+        <Login />
       </div>
         
         <Footer className = "Footer"/>

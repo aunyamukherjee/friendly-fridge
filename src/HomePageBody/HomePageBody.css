@@ -18,8 +18,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-size: 1cm;
     /* justify-content: left; */
-    width: 50%;
+    /* width: 50%; */
+    /* flex: 1; */
+    padding: 1em;
+    /* margin: 1em; */
   }
 
   .Food-Group {
@@ -34,7 +38,6 @@
     box-shadow: 3px 3px 3px black;
     flex-wrap: wrap;
     width: 50%;
-    flex: 1;
   }
 
 /* i am not sure why this wont format into cards when the other FGLV did */
