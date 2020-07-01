@@ -39,7 +39,7 @@ class Header extends Component {
         </div>
 
         <div className= "Page-Title">
-          <PageName name = {this.state.titles[2].name}/>  
+          <PageName name = {this.state.titles[3].name}/>  
         </div>
 
         <div className= "Header-button">
