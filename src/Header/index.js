@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import { render } from './node_modules/@testing-library/react';
 import './Header.css';
-import PageName from '../PageName';
+// import PageName from '../PageName';
 
 
 const style = {
@@ -15,18 +15,18 @@ const style = {
 };
 
 class Header extends Component {
-  state = {
-    titles: [
-      {name: 'Home'},
-      {name: 'Add New Item'},
-      {name: 'Login'},
-      {name: 'Sign Up'},
-      {name: 'Dairy'},
-      {name: 'Veggies'},
-      {name: 'Fruit'}
-    ],
-    otherState: 'some other value'
-  }
+  // state = {
+  //   titles: [
+  //     {name: 'Home'},
+  //     {name: 'Add New Item'},
+  //     {name: 'Login'},
+  //     {name: 'Sign Up'},
+  //     {name: 'Dairy'},
+  //     {name: 'Veggies'},
+  //     {name: 'Fruit'}
+  //   ],
+  //   otherState: 'some other value'
+  // }
 
   /*switchPageNameHandler = () (use this to create new categories*/
 
@@ -38,9 +38,9 @@ class Header extends Component {
           <p>FriendlyFridge</p>      
         </div>
 
-        <div className= "Page-Title">
+        {/* <div className= "Page-Title">
           <PageName name = {this.state.titles[3].name}/>  
-        </div>
+        </div> */}
 
         <div className= "Header-button">
           <p>

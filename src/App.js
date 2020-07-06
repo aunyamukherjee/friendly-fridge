@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
@@ -19,14 +20,28 @@ const App = (props) => {
     return (
       <div>
         <Header className ="Header"/>
-      <div className = "Body">
-        {/* <HomePageBody /> */}
-        {/* <FoodGroupListView /> */}
-        {/* <AddNewItem /> */}
-        {/* <Login /> */}
-        <SignUp />
-      </div>
-        
+        <Router>
+          <div className = "Body">
+            <Switch>
+              <Route path="/" exact>
+                <HomePageBody />
+              </Route>
+              <Route path="/:foodgroupname/food" exact>
+                <FoodGroupListView />
+              </Route>
+              <Route path="/food/new" exact>
+                <AddNewItem />
+              </Route>
+              <Route path="/authenticate/login" exact>
+                <Login />
+              </Route>
+              <Route path="/authenticate/signup" exact>
+                <SignUp />
+              </Route>
+              <Redirect to="/" />
+            </Switch>
+          </div>
+        </Router>
         <Footer className = "Footer"/>
       </div>
     );
