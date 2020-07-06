@@ -16,9 +16,9 @@
 
 .Title {
     display: flex;
-    /* flex-direction: row; */
     align-items: center;
     font-size: 1cm;
+    /* flex-direction: row; */
     /* padding: 1em; */
     /* flex: 1; */
 }
