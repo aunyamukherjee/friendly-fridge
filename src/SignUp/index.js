@@ -13,26 +13,31 @@ const style = {
 
 const SignUp = (props) => {
     return (
-        <div Login-container>
-            <div className= "Login-items">
-                <p>Name:</p>
-                <input type="text" onChange= {props.changed} value = {props.name} />
+        <div>
+            <div className ="Title">
+                <p>Sign Up</p>
             </div>
-            <div className= "Login-items">
-                <p>Email:</p>
-                <input type="text" onChange= {props.changed} value = {props.name} />
+            <div className ="Login-container">
+                <div className= "Login-items">
+                    <p>Name:</p>
+                    <input type="text" onChange= {props.changed} value = {props.name} />
+                </div>
+                <div className= "Login-items">
+                    <p>Email:</p>
+                    <input type="text" onChange= {props.changed} value = {props.name} />
+                </div>
+                <div className= "Login-items">
+                    <p>Password:</p>
+                    <input type="text" onChange= {props.changed} value = {props.name} />
+                </div>
+                {/* <div className= "Login-items"> */}
+                    <button
+                    style = {style}
+                    /*onClick={() => }*/ >
+                    Sign Up
+                    </button>
+                {/* </div> */}
             </div>
-            <div className= "Login-items">
-                <p>Password:</p>
-                <input type="text" onChange= {props.changed} value = {props.name} />
-            </div>
-            {/* <div className= "Login-items"> */}
-                <button
-                style = {style}
-                /*onClick={() => }*/ >
-                Sign Up
-                </button>
-            {/* </div> */}
         </div>
     )
 }

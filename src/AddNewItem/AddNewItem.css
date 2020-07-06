@@ -6,7 +6,7 @@
 
 .Title {
     font-size: 2cm;
-    align-content: center;
+    justify-content: space-evenly;
     flex: 1;
 }
 

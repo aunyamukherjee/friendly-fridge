@@ -14,6 +14,15 @@
     background-color:rgba(163, 184, 193, 0.92);
 }
 
+.Title {
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    font-size: 1cm;
+    /* padding: 1em; */
+    /* flex: 1; */
+}
+
 /* .Button {
     background-color: white;
     border: 1px blue;
