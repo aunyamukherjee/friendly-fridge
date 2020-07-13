@@ -5,7 +5,9 @@ const foodgroupControllers = require('../controllers/foodgroup-controllers');
 
 const router = express.Router();
 
-router.get('/', foodgroupControllers.getFoodGroup);
+router.get('/', foodgroupControllers.getAllFoodgroups);
+router.post('/', foodgroupControllers.createFoodgroup);
+
 
 
 module.exports = router;

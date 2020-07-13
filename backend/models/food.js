@@ -9,8 +9,7 @@ const foodSchema = new Schema({
     expirydate: { type: String, required: true },
     qty: { type: String, required: true },
     comments: { type: String, required: false },
-//    foodgroup: { type: mongoose.Types.ObjectId, required: true}
-    foodgroupid: { type: String, required: true}
+    foodgroupid: { type: mongoose.Types.ObjectId, required: true, ref: 'Foodgroup'}
 });
 
 foodSchema.plugin(uniqueValidator);
