@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const foodRoutes = require('./routes/food-routes');
-const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
 const foodgroupRoutes = require('./routes/foodgroup-routes');
 const HttpError = require('./models/http-error');
@@ -16,8 +15,6 @@ app.use('/api/food', foodRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/foodgroups', foodgroupRoutes);
 
-//app.use('/api/places', placesRoutes);
-//app.use('/api/users', usersRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);
@@ -33,7 +30,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect('mongodb+srv://ashish:mernstack@cluster0.n8bsn.mongodb.net/app?retryWrites=true&w=majority')
+  .connect('mongodb+srv://ashish:mernstack@cluster0.n8bsn.mongodb.net/friendlyfridge?retryWrites=true&w=majority')
   .then(() => {
     app.listen(5000);
     console.log("Started");
