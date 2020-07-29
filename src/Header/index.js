@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import { render } from './node_modules/@testing-library/react';
+import { Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import './Header.css';
 // import PageName from '../PageName';
 
@@ -14,82 +14,45 @@ const style = {
   margin: '8px'
 };
 
-class Header extends Component {
-  // state = {
-  //   titles: [
-  //     {name: 'Home'},
-  //     {name: 'Add New Item'},
-  //     {name: 'Login'},
-  //     {name: 'Sign Up'},
-  //     {name: 'Dairy'},
-  //     {name: 'Veggies'},
-  //     {name: 'Fruit'}
-  //   ],
-  //   otherState: 'some other value'
-  // }
 
-  /*switchPageNameHandler = () (use this to create new categories*/
-
-  render () {
+const Header = (props) => {
     return (
-      <div className="Header-container">
+      <header className="Header-container">
+        {props.children}
         
         <div className= "Logo">
           <p>FriendlyFridge</p>      
         </div>
-
-        {/* <div className= "Page-Title">
-          <PageName name = {this.state.titles[3].name}/>  
-        </div> */}
-
         <div className= "Header-button">
-          <p>
-          <button
-            style = {style}
-            /*onClick={() => }*/ >
-              Add
-          </button>
-          <button
-            style = {style}>
-              Login
-          </button>
-          <button
-            style = {style}>
-              HomePage
-          </button>
-          <button
-            style = {style}>
-              SearchBar
-          </button>
-          </p>
+          <Router>
+            <button
+              style = {style}>
+                <Link to="/food/new">
+                  Add
+                </Link>
+            </button>
+            <button
+              style = {style}>
+                <Link to="/authenticate/login">
+                  Login
+                </Link>
+            </button>
+            <button
+              style = {style}>
+                <Link to="/">
+                  SearchBar
+                </Link>
+            </button>
+            <button
+              style = {style}>
+                <Link to="/">
+                  HomePage
+                </Link>
+            </button>
+          </Router>
         </div>
-        
-        {/* <div className= "Header-button">
-          <button
-            style = {style}>
-              Login
-          </button>
-        </div>
-        
-        <div className= "Header-link">
-          <a
-            className="App-link"
-            href="https://blacklivesmatter.carrd.co/"
-            target="_blank"
-            rel="noopener noreferrer">
-              Home Page
-          </a>
-        </div>
-
-        <div>
-          <p>
-            SearchBar
-          </p>
-        </div> */}
-        
-      </div>
+      </header>
     )
   }
-}
 
 export default Header

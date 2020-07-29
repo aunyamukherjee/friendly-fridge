@@ -1,42 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HomePageBody.css';
+// import FoodGroup from "./FoodGroup.js";
+// import FoodGroupListView from '../FoodGroupListView';
+import ListofFoodGroups from "./ListofFoodGroups";
 
 
 const HomePageBody = (props) => {
+      const GROUPS = [
+        {id: 'u1', name: "Dairy", foods: "4"},
+        {id: 'u3', name: "Fruits", foods: "4"},
+        {id: 'u2', name: "Veggies", foods: "4"}
+      ]
+      //This is a dummy, i will change it to fetch information from mongo
     return (
-        <div className = "HomePageBody-container">
-          <div className = "staticText">
-            Click on one of the food groups to see what you have available
-          </div>
-          <div className="Food-Group">
-            {/* <a
-              href="https://www.delish.com/cooking/recipe-ideas/a26977162/chocolate-ice-cream-recipe/"
-              target="_blank"
-              rel="noopener noreferrer"
-            > */}
-              Dairy
-            {/* </a> */}
-          </div>
-          <div className="Food-Group">
-            {/* <a
-              href="https://therecipecritic.com/vegetable-stir-fry/"
-              target="_blank"
-              rel="noopener noreferrer"
-            > */}
-              Veggies
-            {/* </a> */}
-          </div>
-          <div className="Food-Group">
-            {/* <a
-              href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod.s3.amazonaws.com%2Fimages%2Fassortment-of-colorful-ripe-tropical-fruits-top-royalty-free-image-995518546-1564092355.jpg&imgrefurl=https%3A%2F%2Fwww.goodhousekeeping.com%2Fhealth%2Fdiet-nutrition%2Fg28511617%2Fhealthiest-fruits%2F&tbnid=Tx4xm7Li7U8gKM&vet=12ahUKEwjludeFn4TqAhW6A50JHf9_BqgQMygAegUIARDVAQ..i&docid=M75OSqqe88sloM&w=2119&h=1414&q=fruits&ved=2ahUKEwjludeFn4TqAhW6A50JHf9_BqgQMygAegUIARDVAQ"
-              target="_blank"
-              rel="noopener noreferrer"
-            > */}
-              Fruit
-            {/* </a> */}
-          </div>
-      </div>
-    )
+       <div className = "HomePageBody-container">
+      <ListofFoodGroups items={GROUPS}/>
+     </div>
+     //eventually these need to link to the list of foods
+     
+    );
 }
 
 export default HomePageBody;

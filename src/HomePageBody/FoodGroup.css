@@ -1,0 +1,13 @@
+.Food-Group {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    flex-direction: row;
+    color: white;
+    padding: 1em;
+    margin: 1em;
+    background-color:rgba(163, 184, 193, 0.92); 
+    box-shadow: 3px 3px 3px black;
+    flex-wrap: wrap;
+    width: 50%;
+  }

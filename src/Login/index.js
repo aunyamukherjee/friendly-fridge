@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import "./Login.css";
 
 const style = {
@@ -19,7 +20,7 @@ const Login = (props) => {
             </div>
             <div Login-container>
                 <div className= "Login-items">
-                    <p>Name:</p>
+                    <p>Email:</p>
                     <input type="text" onChange= {props.changed} value = {props.name} />
                 </div>
                 <div className= "Login-items">
@@ -31,6 +32,13 @@ const Login = (props) => {
                     style = {style}
                     /*onClick={() => }*/ >
                     Login
+                    </button>
+                    <button
+                    style = {style}>
+                        <Link to="/authenticate/signup">
+                            Sign Up!
+                        </Link>
+                    
                     </button>
                 {/* </div> */}
             </div>

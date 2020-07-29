@@ -10,6 +10,8 @@ import FoodGroupListView from "./FoodGroupListView";
 import AddNewItem from "./AddNewItem";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import FoodItemDetails from "./FoodItemDetails";
+import Auth from "./Auth";
 
 
 const App = (props) => {
@@ -31,6 +33,12 @@ const App = (props) => {
               </Route>
               <Route path="/food/new" exact>
                 <AddNewItem />
+              </Route>
+              <Route path= "/food/details" exact>
+                <FoodItemDetails />
+              </Route>
+              <Route path="/auth" exact>
+                <Auth />
               </Route>
               <Route path="/authenticate/login" exact>
                 <Login />
