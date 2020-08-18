@@ -8,7 +8,7 @@ const FoodGroup = (props) => {
         <li>
             <div>
                 {/*This needs tp be dynamic, but i have to figure out what the routing url is for each thing */}
-                <Link to={'/$props.name}'}>
+                <Link to={`/${props.id}/food`}>
                     <div className="Food-Group">
                         <h2>{props.name}</h2>
                     </div>

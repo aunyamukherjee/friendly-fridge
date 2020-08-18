@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HomePageBody.css';
 // import FoodGroup from "./FoodGroup.js";
-// import FoodGroupListView from '../FoodGroupListView';
+// import FoodsInGroup from '../FoodsInGroup';
 import ListofFoodGroups from "./ListofFoodGroups";
 
 

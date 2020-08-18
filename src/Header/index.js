@@ -20,7 +20,7 @@ const Header = (props) => {
       <header className="Header-container">
         {props.children}
         
-        <div className= "Logo">
+        {/* <div className= "Logo">
           <p>FriendlyFridge</p>      
         </div>
         <div className= "Header-button">
@@ -50,7 +50,7 @@ const Header = (props) => {
                 </Link>
             </button>
           </Router>
-        </div>
+        </div> */}
       </header>
     )
   }

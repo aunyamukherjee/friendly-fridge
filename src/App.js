@@ -1,17 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './Header';
+import Navigation from './Header/Navigation';
 import Footer from './Footer';
 // import "./Footer/Footer.css";
 // import { render } from '@testing-library/react';
 import HomePageBody from './HomePageBody';
-import FoodGroupListView from "./FoodGroupListView";
-import AddNewItem from "./AddNewItem";
+import FoodsList from "./FoodsInGroup/FoodsList";
+import NewItem from "./NewItem/NewItem";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import FoodItemDetails from "./FoodItemDetails";
 import Auth from "./Auth";
+import FoodGroupFoods from "./FoodsInGroup/FoodGroupFoods";
 
 
 const App = (props) => {
@@ -21,18 +22,19 @@ const App = (props) => {
 
     return (
       <div>
-        <Header className ="Header"/>
         <Router>
+          <Navigation className="Header"/>
+          <main>
           <div className = "Body">
             <Switch>
               <Route path="/" exact>
                 <HomePageBody />
               </Route>
-              <Route path="/:foodgroupname/food" exact>
-                <FoodGroupListView />
+              <Route path="/:foodgroupid/food" exact>
+                <FoodGroupFoods />
               </Route>
               <Route path="/food/new" exact>
-                <AddNewItem />
+                <NewItem />
               </Route>
               <Route path= "/food/details" exact>
                 <FoodItemDetails />
@@ -49,6 +51,7 @@ const App = (props) => {
               <Redirect to="/" />
             </Switch>
           </div>
+          </main>
         </Router>
         <Footer className = "Footer"/>
       </div>
