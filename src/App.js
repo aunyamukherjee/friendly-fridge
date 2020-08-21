@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import Navigation from './Header/Navigation';
@@ -13,46 +13,78 @@ import SignUp from "./SignUp";
 import FoodItemDetails from "./FoodItemDetails";
 import Auth from "./Auth";
 import FoodGroupFoods from "./FoodsInGroup/FoodGroupFoods";
+import { AuthContext } from './shared/context/auth-context';
 
 
 const App = (props) => {
 
   // since i got rid of the state portion in this code
   // I could change this back to a function (did it)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, []);
+
+  let routes;
+
+  if (isLoggedIn) {
+    routes=(
+      <React.Fragment>
+          <Route path="/" exact>
+            <HomePageBody />
+          </Route>
+          <Route path="/:foodgroupid/food" exact>
+            <FoodGroupFoods />
+          </Route>
+          <Route path= "/food/details" exact>
+            <FoodItemDetails />
+          </Route>
+          <Route path="/food/new" exact>
+                  <NewItem />
+          </Route>
+          <Redirect to="/" />
+      </React.Fragment>
+    );
+  } else {
+    routes=(
+      <React.Fragment>
+          <Route path="/" exact>
+            <HomePageBody />
+          </Route>
+          <Route path="/:foodgroupid/food" exact>
+            <FoodGroupFoods />
+          </Route>
+          <Route path= "/food/details" exact>
+            <FoodItemDetails />
+          </Route>
+          <Route path="/auth" exact>
+                  <Auth />
+          </Route>
+          <Redirect to="/auth" />
+      </React.Fragment>
+    );
+  }
     return (
       <div>
-        <Router>
-          <Navigation className="Header"/>
-          <main>
-          <div className = "Body">
-            <Switch>
-              <Route path="/" exact>
-                <HomePageBody />
-              </Route>
-              <Route path="/:foodgroupid/food" exact>
-                <FoodGroupFoods />
-              </Route>
-              <Route path="/food/new" exact>
-                <NewItem />
-              </Route>
-              <Route path= "/food/details" exact>
-                <FoodItemDetails />
-              </Route>
-              <Route path="/auth" exact>
-                <Auth />
-              </Route>
-              <Route path="/authenticate/login" exact>
-                <Login />
-              </Route>
-              <Route path="/authenticate/signup" exact>
-                <SignUp />
-              </Route>
-              <Redirect to="/" />
-            </Switch>
-          </div>
-          </main>
-        </Router>
+        <AuthContext.Provider 
+          value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}
+        >
+          <Router>
+            <Navigation className="Header"/>
+            <main>
+            <div className = "Body">
+              <Switch>
+                  {routes}
+              </Switch>
+            </div>
+            </main>
+          </Router>
+        </AuthContext.Provider>
         <Footer className = "Footer"/>
       </div>
     );

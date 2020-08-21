@@ -6,7 +6,7 @@ import './Backdrop.css';
 const Backdrop = props => {
   return ReactDOM.createPortal(
     <div className="backdrop" onClick={props.onClick}></div>,
-    document.getElementById('drawer-backdrop-hook')
+    document.getElementById('backdrop-hook')
   );
 };
 
