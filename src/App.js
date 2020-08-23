@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import './App.css';
 import Navigation from './Header/Navigation';
 import Footer from './Footer';
+import Users from './Users/Users';
+
 // import "./Footer/Footer.css";
 // import { render } from '@testing-library/react';
 import HomePageBody from './HomePageBody';
@@ -46,6 +48,9 @@ const App = (props) => {
           </Route>
           <Route path="/food/new" exact>
                   <NewItem />
+          </Route>
+          <Route path="/users" exact>
+                  <Users />
           </Route>
           <Redirect to="/" />
       </React.Fragment>
