@@ -14,6 +14,15 @@ const DUMMY_FOODS = [
         foodgroupid:'u1'
     },
     {
+        id:'5f023dd42c651f6df1816907',
+        name:'Berries',
+        details:'Black Berries',
+        expirydate:'08/12/2020',
+        qty:'5',
+        comments:'Quite tart',
+        foodgroupid:'u1'
+    },
+    {
         id:'345dgghh6',
         name:'Apples',
         details:'Gala',

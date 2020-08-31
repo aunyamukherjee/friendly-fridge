@@ -5,16 +5,16 @@ import Navigation from './Header/Navigation';
 import Footer from './Footer';
 import Users from './Users/Users';
 
-// import "./Footer/Footer.css";
-// import { render } from '@testing-library/react';
 import HomePageBody from './HomePageBody';
-import FoodsList from "./FoodsInGroup/FoodsList";
+import FoodsList from "./FoodItems/FoodsList";
 import NewItem from "./NewItem/NewItem";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import FoodItemDetails from "./FoodItemDetails";
+import FoodItem from "./FoodItems/FoodItem";
 import Auth from "./Auth";
-import FoodGroupFoods from "./FoodsInGroup/FoodGroupFoods";
+import FoodGroupFoods from "./FoodItems/FoodGroupFoods";
+import UpdateFood from './UpdateFood/UpdateFood';
+
 import { AuthContext } from './shared/context/auth-context';
 
 
@@ -43,14 +43,17 @@ const App = (props) => {
           <Route path="/:foodgroupid/food" exact>
             <FoodGroupFoods />
           </Route>
-          <Route path= "/food/details" exact>
-            <FoodItemDetails />
+          <Route path="/foods/:foodname" exact>
+            <FoodItem />
           </Route>
           <Route path="/food/new" exact>
-                  <NewItem />
+            <NewItem />
           </Route>
           <Route path="/users" exact>
-                  <Users />
+            <Users />
+          </Route>
+          <Route path="/foodedit/:foodname" exact>
+            <UpdateFood/>
           </Route>
           <Redirect to="/" />
       </React.Fragment>
@@ -61,11 +64,15 @@ const App = (props) => {
           <Route path="/" exact>
             <HomePageBody />
           </Route>
+          {/* remove this from not logged in, just for testing purposes */}
+          <Route path="/foodedit/:foodname" exact>
+            <UpdateFood/>
+          </Route>
           <Route path="/:foodgroupid/food" exact>
             <FoodGroupFoods />
           </Route>
-          <Route path= "/food/details" exact>
-            <FoodItemDetails />
+          <Route path="/foods/:foodname" exact>
+            <FoodItem />
           </Route>
           <Route path="/auth" exact>
                   <Auth />
@@ -76,7 +83,7 @@ const App = (props) => {
   }
     return (
       <div>
-        <AuthContext.Provider 
+        <AuthContext.Provider
           value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}
         >
           <Router>

@@ -1,36 +1,14 @@
-import React, {useCallback, useReducer} from 'react';
-import "./NewItem.css";
+import React from 'react';
+import "./FoodForm.css";
 import Input from '../shared/FormElements/Input.js';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH} from '../shared/util/validators'
 import Button from '../shared/FormElements/Button';
+import {useForm } from '../shared/hooks/form-hook';
 
-const formReducer = (state, action) => {
-    switch (action.type) {
-      case 'INPUT_CHANGE':
-        let formIsValid = true;
-        for (const inputId in state.inputs) {
-          if (inputId === action.inputId) {
-            formIsValid = formIsValid && action.isValid;
-          } else {
-            formIsValid = formIsValid && state.inputs[inputId].isValid;
-          }
-        }
-        return {
-          ...state,
-          inputs: {
-            ...state.inputs,
-            [action.inputId]: { value: action.value, isValid: action.isValid }
-          },
-          isValid: formIsValid
-        };
-      default:
-        return state;
-    }
-  };
   
   const NewItem = () => {
-    const [formState, dispatch] = useReducer(formReducer, {
-      inputs: {
+    const [formState, inputHandler] = useForm(
+      {
         name: {
           value: '',
           isValid: false
@@ -39,32 +17,28 @@ const formReducer = (state, action) => {
           value: '',
           isValid: false
         },
-        exprydate: {
-            value: '',
-            isValid: false
-          },
-          qty: {
-            value: '',
-            isValid: false
-          },
-          comments: {
-            value: '',
-            isValid: false
-          },
-
+        expirydate: {
+          value: '',
+          isValid: false
+        },
+        qty: {
+          value: '',
+          isValid: false
+        },
+        comments: {
+          value: '',
+          isValid: false
+        }
       },
-      isValid: false
-    });
+      false
+    );
   
-    const inputHandler = useCallback((id, value, isValid) => {
-      dispatch({
-        type: 'INPUT_CHANGE',
-        value: value,
-        isValid: isValid,
-        inputId: id
-      });
-    }, []);
   
+    const foodSubmitHandler = event => {
+      event.preventDefault();
+      console.log(formState.inputs); //eventually link this with backend
+    };
+
     return (
       <form className="food-form">
         <Input
@@ -85,7 +59,7 @@ const formReducer = (state, action) => {
           onInput={inputHandler}
         />
         <Input
-         id= "exprydate"
+         id= "expirydate"
          element="input" 
          type="text" 
          label="Expiration Date" 

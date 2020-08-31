@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Login.css";
 
 const style = {
