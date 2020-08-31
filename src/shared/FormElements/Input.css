@@ -5,6 +5,7 @@
   
   .form-control label,
   .form-control input,
+  .form-control select,
   .form-control textarea {
     display: block;
   }
@@ -15,6 +16,7 @@
   }
   
   .form-control input,
+  .form-control select
   .form-control textarea {
     width: 100%;
     font: inherit;
@@ -24,6 +26,7 @@
   }
   
   .form-control input:focus,
+  .form-control select:focus,
   .form-control textarea:focus {
     outline: none;
     background: #ebebeb;
@@ -35,6 +38,14 @@
     color: red;
   }
   
+  .form-control__select {
+    width: 100%;
+    margin: 1rem 0;
+    color: teal;
+    font: inherit;
+    padding: 0.15rem 0.25rem;
+
+  }
   .form-control--invalid input,
   .form-control--invalid textarea {
     border-color: red;

@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 
+
 import { validate } from '../util/validators';
 import './Input.css';
 
@@ -22,7 +23,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-const Input = props => {
+const Select = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: '',
     isTouched: false,
@@ -50,38 +51,41 @@ const { value, isValid} = inputState;
     });
   };
 
-  // const elementChoice = props => {
-  //   if (props.choice === 'input') {
-  //     elementChoice = 
-  //     "<input
-  //       id={props.id}
-  //       type={props.type}
-  //       placeholder={props.placeholder}
-  //       onChange={changeHandler}
-  //       onBlur={touchHandler}
-  //       value={inputState.value}
-  //     />"";
-
-  // };
+  const options = [
+      {value: 'noFoodgroup', label: 'Select food group'},
+      {value: 'dairy', label: 'Dairy'},
+      {value: 'fruits', label: 'Fruits'},
+      {value: 'grains', label: 'Grains'},
+      {value: 'meat', label: 'Meat, Fish and Eggs'},
+      {value: 'vegetables', label: 'Vegetables'},
+      {value: 'drinks', label: 'Drinks'},
+      {value: 'carbs', label: 'Carbs'},
+      {value: 'fats', label: 'Fats'},
+      {value: 'highsugar', label: 'High Sugar'}
+  ]
 
   const element =
-    props.element === 'input' ? (
-      <input
+    (
+      <select className="form-control__select"
         id={props.id}
         type={props.type}
         placeholder={props.placeholder}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
-      />
-    ) : (
-      <textarea
-        id={props.id}
-        rows={props.rows || 3}
-        onChange={changeHandler}
-        onBlur={touchHandler}
-        value={inputState.value}
-      />
+      >
+            {/* option={options} /> */}
+            <option value="noFoodgroup">Select food group</option>
+            <option value="dairy">Dairy</option>
+            <option value="fruits">Fruits</option>
+            <option value="grains">Grains</option>
+            <option value="meat">Meat, Fish and Eggs</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="drinks">Drinks</option>
+            <option value="carbs">Carbs</option>
+            <option value="fats">Fats</option>
+            <option value="highsugar">High Sugar</option>
+        </select>
     );
 
   return (
@@ -96,4 +100,4 @@ const { value, isValid} = inputState;
   );
 };
 
-export default Input;
+export default Select;

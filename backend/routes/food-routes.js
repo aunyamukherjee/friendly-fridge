@@ -14,16 +14,26 @@ router.get('/foodgroup/:fgid', foodControllers.getFoodsByFoodGroupId);
 router.post(
   '/',
   [
-    check('title')
+    check('name')
       .not()
       .isEmpty(),
-    check('description').isLength({ min: 5 }),
-    check('address')
+    check('details')
       .not()
-      .isEmpty()
+      .isEmpty(),
+      check('expirydate')
+      .not()
+      .isEmpty(),  
+    check('qty').isLength({ min: 1 }),
+    check('comments')
+      .not()
+      .isEmpty(),
+    check('foodgroupid')
+    .not()
+    .isEmpty()
   ],
   foodControllers.createFood
 );
+
 
 router.patch(
   '/:fid',

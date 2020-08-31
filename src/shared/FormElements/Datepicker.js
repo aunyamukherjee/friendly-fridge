@@ -1,14 +1,16 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
+import DatePicker from "react-datepicker";
 
 import { validate } from '../util/validators';
 import './Input.css';
+import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
 const inputReducer = (state, action) => {
   switch (action.type) {
     case 'CHANGE':
       return {
         ...state,
-        value: action.val,
+        selected: action.val,
         isValid: validate(action.val, action.validators)
       };
     case 'TOUCH': {
@@ -22,24 +24,27 @@ const inputReducer = (state, action) => {
   }
 };
 
-const Input = props => {
+const Datepicker = props => {
+  const [date, setDate] = useState(new Date());
+
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: '',
+    selected: '',
     isTouched: false,
     isValid: false
   });
 
 const {id, onInput} = props;
-const { value, isValid} = inputState;
+const { selected, isValid} = inputState;
 
   useEffect(() => {
-      props.onInput(props.id, inputState.value, inputState.isValid)
-  }, [id, value, isValid, onInput]);
+      props.onInput(props.id, inputState.selected, inputState.isValid)
+  }, [id, selected, isValid, onInput]);
 
   const changeHandler = event => {
+    const event1 = event.target;
     dispatch({
       type: 'CHANGE',
-      val: event.target.value,
+      selected: event1,
       validators: props.validators
     });
   };
@@ -49,39 +54,20 @@ const { value, isValid} = inputState;
       type: 'TOUCH'
     });
   };
-
-  // const elementChoice = props => {
-  //   if (props.choice === 'input') {
-  //     elementChoice = 
-  //     "<input
-  //       id={props.id}
-  //       type={props.type}
-  //       placeholder={props.placeholder}
-  //       onChange={changeHandler}
-  //       onBlur={touchHandler}
-  //       value={inputState.value}
-  //     />"";
-
-  // };
+  const handleChange = date => {
+    setDate(date);
+  };
 
   const element =
-    props.element === 'input' ? (
-      <input
+    (
+      <DatePicker className="form-control__select"
         id={props.id}
         type={props.type}
         placeholder={props.placeholder}
-        onChange={changeHandler}
-        onBlur={touchHandler}
-        value={inputState.value}
-      />
-    ) : (
-      <textarea
-        id={props.id}
-        rows={props.rows || 3}
-        onChange={changeHandler}
-        onBlur={touchHandler}
-        value={inputState.value}
-      />
+        onChange={handleChange}
+        selected = {date}
+      >
+      </DatePicker>    
     );
 
   return (
@@ -96,4 +82,4 @@ const { value, isValid} = inputState;
   );
 };
 
-export default Input;
+export default Datepicker;

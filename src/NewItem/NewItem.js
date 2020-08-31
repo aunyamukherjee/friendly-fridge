@@ -1,8 +1,20 @@
-import React, {useCallback, useReducer} from 'react';
-import "./NewItem.css";
+import React, {useCallback, useReducer, useState } from 'react';
 import Input from '../shared/FormElements/Input.js';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH} from '../shared/util/validators'
+import Select from '../shared/FormElements/Select.js';
 import Button from '../shared/FormElements/Button';
+import Datepicker from '../shared/FormElements/Datepicker';
+//import DatePicker from "react-datepicker";
+
+import { 
+  VALIDATOR_REQUIRE, 
+  VALIDATOR_MINLENGTH
+} from '../shared/util/validators';
+
+//import { useHttpClient } from '../shared/hooks/http-hook';
+
+import "./NewItem.css";
+// import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
+
 
 const formReducer = (state, action) => {
     switch (action.type) {
@@ -27,8 +39,31 @@ const formReducer = (state, action) => {
         return state;
     }
   };
-  
+  const itemSubmitHandler = event => {
+  // const itemSubmitHandler = event => {
+  //   event.preventDefault();
+  //   sendRequest(
+  //     'http://localhost:5000/api/food',
+  //     'POST',
+  //     JSON.stringify({
+  //       name: formState.inputs.name.value
+  //     }),
+  //   )
+  // };
+  //
+// name,
+// details,
+// expirydate,
+// qty,
+// datebought: new Date().toLocaleDateString(),
+// comments,
+// foodgroupid
+  };
+
   const NewItem = () => {
+    //const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const [date, setDate] = useState(new Date());
+    
     const [formState, dispatch] = useReducer(formReducer, {
       inputs: {
         name: {
@@ -40,7 +75,7 @@ const formReducer = (state, action) => {
           isValid: false
         },
         exprydate: {
-            value: '',
+            value: date,
             isValid: false
           },
           qty: {
@@ -51,6 +86,10 @@ const formReducer = (state, action) => {
             value: '',
             isValid: false
           },
+          foodgroup: {
+            value: '',
+            isValid: false
+          }
 
       },
       isValid: false
@@ -65,8 +104,12 @@ const formReducer = (state, action) => {
       });
     }, []);
   
+    const handleChange = date => {
+      setDate(date);
+    };
+
     return (
-      <form className="food-form">
+      <form className="food-form" onSubmit={itemSubmitHandler}>
         <Input
           id="name"
           element="input"
@@ -84,14 +127,16 @@ const formReducer = (state, action) => {
           errorText="Please enter a valid description (at least 5 characters)."
           onInput={inputHandler}
         />
-        <Input
+
+      <Datepicker
          id= "exprydate"
-         element="input" 
+         element="select" 
          type="text" 
          label="Expiration Date" 
-         validators={[VALIDATOR_MINLENGTH(7)]} 
+         validators={[VALIDATOR_REQUIRE()]}
          errorText="Please enter (mm/dd/yy)"
-         onInput={inputHandler}/>
+         onInput={inputHandler}/> 
+
          <Input
          id ="qty"
          element="input" 
@@ -107,6 +152,15 @@ const formReducer = (state, action) => {
          validators={[VALIDATOR_REQUIRE()]} 
          errorText="Please enter a comment"
          onInput={inputHandler}/>
+         <Select 
+          id="foodgroup"
+          element="select"
+          label="Foodgroup"
+          validators={[VALIDATOR_REQUIRE()]} 
+          errorText="Please enter a foodgroup"
+          onInput={inputHandler}>
+        </Select> 
+
         <Button type="submit" disabled={!formState.isValid}>
           ADD ITEM
         </Button>

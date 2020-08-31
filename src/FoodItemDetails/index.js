@@ -15,7 +15,7 @@ const style = {
 
 const FoodItemDetails = (props) => {
     return (
-        <div FoodItemDetails-container>
+        <div className="FoodItemDetails-container">
             <div className= "Title" >Food Item Details</div>
             <div className= "FoodItemDetails-items">
                 <p>Details:</p>
