@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 
 import { validate } from '../util/validators';
 import './Input.css';
-import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
 const inputReducer = (state, action) => {
   switch (action.type) {

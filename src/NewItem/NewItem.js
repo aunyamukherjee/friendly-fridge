@@ -13,7 +13,6 @@ import {
 //import { useHttpClient } from '../shared/hooks/http-hook';
 
 import "./NewItem.css";
-// import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
 
 const formReducer = (state, action) => {

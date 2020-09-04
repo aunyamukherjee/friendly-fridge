@@ -18,7 +18,9 @@ const getAllFoodgroups = async (req, res, next) => {
     }
     if (foodgroup.length > 0) {
         res.type('application/json');
-        res.send(foodgroup);
+        //res.send(foodgroup);
+        res.json(foodgroup);
+        console.log("foodgroup returned=" + foodgroup);
     } else {
         const error = new HttpError (
             'Could not find any food groups.', 404
