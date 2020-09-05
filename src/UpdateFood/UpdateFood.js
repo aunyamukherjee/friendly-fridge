@@ -100,7 +100,7 @@ const UpdateFood = () => {
 
     const foodUpdateSumbitHandler = event => {
         event.preventDefault();
-        console.log(formState.inputs);
+        console.log('foodUpdateSubmitHandler:'+JSON.stringify(formState.inputs));
     };
 
     if (!identifiedFood) {
@@ -129,18 +129,18 @@ const UpdateFood = () => {
           label="Name"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid name."
-          onInput={() => {}}
+          onInput={inputHandler}
           initialValue={formState.inputs.name.value}
-         initalValid={formState.inputs.name.isValid}/>
+         initialValid={formState.inputs.name.isValid}/>
         <Input
           id="details"
           element="textarea"
           label="Details"
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText="Please enter a valid description (at least 5 characters)."
-          onInput={() => {}}
+          onInput={inputHandler}
           initialValue={formState.inputs.details.value}
-          initalValid={formState.inputs.details.isValid}/>
+          initialValid={formState.inputs.details.isValid}/>
         <Input
          id= "expirydate"
          element="input" 
@@ -148,9 +148,9 @@ const UpdateFood = () => {
          label="Expiration Date" 
          validators={[VALIDATOR_MINLENGTH(7)]} 
          errorText="Please enter (mm/dd/yy)"
-         onInput={() => {}}
+         onInput={inputHandler}
          initialValue={formState.inputs.expirydate.value}
-         initalValid={formState.inputs.expirydate.isValid}/>
+         initialValid={formState.inputs.expirydate.isValid}/>
          <Input
          id ="qty"
          element="input" 
@@ -158,18 +158,18 @@ const UpdateFood = () => {
          label="Quantity" 
          validators={[VALIDATOR_REQUIRE()]} 
          errorText="Please enter a quantity"
-         onInput={() => {}}
+         onInput={inputHandler}
          initialValue={formState.inputs.qty.value}
-         initalValid={formState.inputs.qty.isValid}/>
+         initialValid={formState.inputs.qty.isValid}/>
          <Input
          id ="comments"
          element="textarea" 
          label="Comments" 
          validators={[VALIDATOR_REQUIRE()]} 
          errorText="Please enter a comment"
-         onInput={() => {}}
+         onInput={inputHandler}
          initialValue={formState.inputs.comments.value}
-         initalValid={formState.inputs.comments.isValid}/>
+         initialValid={formState.inputs.comments.isValid}/>
         <Button type="submit" disabled={!formState.isValid}>
           UPDATE ITEM
         </Button>

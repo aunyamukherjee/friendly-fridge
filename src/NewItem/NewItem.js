@@ -73,7 +73,7 @@ const formReducer = (state, action) => {
           value: '',
           isValid: false
         },
-        exprydate: {
+        expirydate: {
             value: date,
             isValid: false
           },
@@ -125,7 +125,7 @@ const formReducer = (state, action) => {
         />
 
       <Datepicker
-         id= "exprydate"
+         id= "expirydate"
          element="select" 
          type="text" 
          label="Expiration Date" 
