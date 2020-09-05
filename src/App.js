@@ -6,10 +6,9 @@ import Footer from './Footer';
 import Users from './Users/Users';
 
 import HomePageBody from './HomePageBody';
-import FoodsList from "./FoodItems/FoodsList";
+//import UnauthenticatedHomePageBody from './HomePageBody/UnauthenticatedHomePageBody';
+
 import NewItem from "./NewItem/NewItem";
-import Login from "./Login";
-import SignUp from "./SignUp";
 import FoodItem from "./FoodItems/FoodItem";
 import Auth from "./Auth";
 import FoodGroupFoods from "./FoodItems/FoodGroupFoods";

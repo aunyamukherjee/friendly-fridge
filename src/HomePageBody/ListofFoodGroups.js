@@ -12,13 +12,15 @@ const ListofFoodGroups = (props) => {
       );
     }
       return (
+        <div className="foodgroup-header">Click on one of the food groups to see what you have available
         <ul className="foodgroup-item">
+          
           <Card className="foodgroup-item__content">
-              Click on one of the food groups to see what you have available
+
             <div className="foodgroup-item__info">
               {props.items.map(groups => (
                 <FoodGroup 
-                key = {groups.id} 
+                key = {groups._id} 
                 id={groups._id} 
                 name={groups.name} 
                 foods={groups.foods} 
@@ -27,6 +29,7 @@ const ListofFoodGroups = (props) => {
             </div>
           </Card>
         </ul>
+        </div>
       )
     }
 

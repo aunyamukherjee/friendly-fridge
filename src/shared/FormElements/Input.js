@@ -50,20 +50,6 @@ const { value, isValid} = inputState;
     });
   };
 
-  // const elementChoice = props => {
-  //   if (props.choice === 'input') {
-  //     elementChoice = 
-  //     "<input
-  //       id={props.id}
-  //       type={props.type}
-  //       placeholder={props.placeholder}
-  //       onChange={changeHandler}
-  //       onBlur={touchHandler}
-  //       value={inputState.value}
-  //     />"";
-
-  // };
-
   const element =
     props.element === 'input' ? (
       <input

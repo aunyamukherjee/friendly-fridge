@@ -32,9 +32,10 @@ const HomePageBody = (props) => {
               <LoadingSpinner />
           </div>
         )}
-        {/* <div className = "HomePageBody-container"> */}
+         <div className = "HomePageBody-container"> 
         {!isLoading && loadedFoodgroups && 
             <ListofFoodGroups items={loadedFoodgroups} />}
+        </div>
      </React.Fragment>
      
     );

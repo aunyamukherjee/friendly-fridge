@@ -29,11 +29,11 @@ const DUMMY_FOODS = [
         expirydate:'08/15/2020',
         qty:'5',
         comments:'Use these for Salad',
-        foodgroupid:'u2'
+        foodgroupid:'5f43d1cca7812d8c3f87c2f6'
     }
 ];
 
-const FoodGroupFoods = () => {
+const FoodGroupFoods = props => {
     const foodgroupid = useParams().foodgroupid;
     const loadedFoods = DUMMY_FOODS.filter(food => food.foodgroupid === foodgroupid);
     return <FoodsList items={loadedFoods} />;

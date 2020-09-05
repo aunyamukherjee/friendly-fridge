@@ -78,7 +78,7 @@ const FoodItem = props => {
           cannot be reversed.
           </p>
         </Modal>
-        <li className="food-item">
+        <div className="food-item">
           <Card className="food-item__content">
             <div className="food-item__info">
               <h2>{identifiedFood.name}</h2>
@@ -99,7 +99,7 @@ const FoodItem = props => {
               {/* )} */}
             </div>
           </Card>
-        </li>
+        </div>
       </React.Fragment>
     );
   };

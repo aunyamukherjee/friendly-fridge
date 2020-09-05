@@ -103,9 +103,6 @@ const formReducer = (state, action) => {
       });
     }, []);
   
-    const handleChange = date => {
-      setDate(date);
-    };
 
     return (
       <form className="food-form" onSubmit={itemSubmitHandler}>

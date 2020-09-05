@@ -11,3 +11,7 @@
     flex-wrap: wrap;
     width: 50%;
   }
+  .food-container {
+    height: 20rem;
+    width: 100%;
+  }
