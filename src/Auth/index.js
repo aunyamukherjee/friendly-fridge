@@ -107,11 +107,11 @@ const Auth = () => {
         <ErrorModal error={error} onClear={clearError} />
         <Card className="authentication">
           {isLoading && <LoadingSpinner asOverlay />}
-          <h2>Login Required</h2>
+          <h3>Login Required</h3>
           <hr />
           <form onSubmit={authSubmitHandler}>
             {!isLoginMode && (
-              <Input
+              <Input 
                 element="input"
                 id="name"
                 type="text"
@@ -121,7 +121,7 @@ const Auth = () => {
                 onInput={inputHandler}
               />
             )}
-            <Input
+            <Input 
               element="input"
               id="email"
               type="email"
@@ -130,7 +130,7 @@ const Auth = () => {
               errorText="Please enter a valid email address."
               onInput={inputHandler}
             />
-            <Input
+            <Input 
               element="input"
               id="password"
               type="password"
