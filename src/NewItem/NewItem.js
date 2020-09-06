@@ -1,70 +1,27 @@
-import React, {useCallback, useReducer, useState } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+
 import Input from '../shared/FormElements/Input.js';
 import Select from '../shared/FormElements/Select.js';
 import Button from '../shared/FormElements/Button';
 import Datepicker from '../shared/FormElements/Datepicker';
-//import DatePicker from "react-datepicker";
+import ErrorModal from '../shared/UIElements/ErrorModal';
+import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
+
+import { useForm } from '../shared/hooks/form-hook';
+import { useHttpClient } from '../shared/hooks/http-hook';
+import './NewItem.css';
 
 import { 
   VALIDATOR_REQUIRE, 
   VALIDATOR_MINLENGTH
 } from '../shared/util/validators';
 
-//import { useHttpClient } from '../shared/hooks/http-hook';
-
-import "./NewItem.css";
-
-
-const formReducer = (state, action) => {
-    switch (action.type) {
-      case 'INPUT_CHANGE':
-        let formIsValid = true;
-        for (const inputId in state.inputs) {
-          if (inputId === action.inputId) {
-            formIsValid = formIsValid && action.isValid;
-          } else {
-            formIsValid = formIsValid && state.inputs[inputId].isValid;
-          }
-        }
-        return {
-          ...state,
-          inputs: {
-            ...state.inputs,
-            [action.inputId]: { value: action.value, isValid: action.isValid }
-          },
-          isValid: formIsValid
-        };
-      default:
-        return state;
-    }
-  };
-  const itemSubmitHandler = event => {
-  // const itemSubmitHandler = event => {
-  //   event.preventDefault();
-  //   sendRequest(
-  //     'http://localhost:5000/api/food',
-  //     'POST',
-  //     JSON.stringify({
-  //       name: formState.inputs.name.value
-  //     }),
-  //   )
-  // };
-  //
-// name,
-// details,
-// expirydate,
-// qty,
-// datebought: new Date().toLocaleDateString(),
-// comments,
-// foodgroupid
-  };
-
   const NewItem = () => {
-    //const { isLoading, error, sendRequest, clearError } = useHttpClient();
-    const [date, setDate] = useState(new Date());
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
     
-    const [formState, dispatch] = useReducer(formReducer, {
-      inputs: {
+    const [formState, inputHandler] = useForm(
+      {
         name: {
           value: '',
           isValid: false
@@ -74,38 +31,55 @@ const formReducer = (state, action) => {
           isValid: false
         },
         expirydate: {
-            value: date,
-            isValid: false
-          },
-          qty: {
+            value: '',
+            isValid: true
+        },
+        qty: {
             value: '',
             isValid: false
-          },
-          comments: {
+        },
+        comments: {
             value: '',
             isValid: false
-          },
-          foodgroup: {
+        },
+        foodgroupid: {
             value: '',
-            isValid: false
-          }
+            isValid: true
+        }
 
       },
-      isValid: false
-    });
+      false
+    );
   
-    const inputHandler = useCallback((id, value, isValid) => {
-      dispatch({
-        type: 'INPUT_CHANGE',
-        value: value,
-        isValid: isValid,
-        inputId: id
-      });
-    }, []);
+    const history = useHistory();
+    const itemSubmitHandler = async event => {
+       event.preventDefault();
+      try {
+        await sendRequest(
+          'http://localhost:5000/api/food',
+          'POST',
+          JSON.stringify({
+            name: formState.inputs.name.value,
+            details: formState.inputs.details.value,
+            expirydate: formState.inputs.expirydate.value,
+            qty: formState.inputs.qty.value,
+            comments: formState.inputs.comments.value,
+            foodgroupid: formState.inputs.foodgroupid.value
+          }),
+          { 'Content-Type': 'application/json'}
+        );
+
+        history.push('/');
+        // Redirect the user to a different page
+      } catch ( err) {};
   
+    };
 
     return (
+      <React.Fragment>
+        <ErrorModal error={error} onClear={clearError} />
       <form className="food-form" onSubmit={itemSubmitHandler}>
+        {isLoading && <LoadingSpinner asOverlay />}
         <Input
           id="name"
           element="input"
@@ -124,14 +98,23 @@ const formReducer = (state, action) => {
           onInput={inputHandler}
         />
 
-      <Datepicker
+        {/* <Datepicker
          id= "expirydate"
-         element="select" 
+         element="datepicker" 
          type="text" 
          label="Expiration Date" 
          validators={[VALIDATOR_REQUIRE()]}
          errorText="Please enter (mm/dd/yy)"
-         onInput={inputHandler}/> 
+         onInput={inputHandler}/>   */}
+
+        <Input
+         id= "expirydate"
+         element="input"
+         type="text"
+         label="Expiration Date"
+         validators={[VALIDATOR_MINLENGTH(7)]}
+         errorText="Please enter (mm/dd/yy)"
+         onInput={inputHandler} />
 
          <Input
          id ="qty"
@@ -149,18 +132,19 @@ const formReducer = (state, action) => {
          errorText="Please enter a comment"
          onInput={inputHandler}/>
          <Select 
-          id="foodgroup"
+          id="foodgroupid"
           element="select"
           label="Foodgroup"
-          validators={[VALIDATOR_REQUIRE()]} 
+           validators={[VALIDATOR_REQUIRE()]} 
           errorText="Please enter a foodgroup"
           onInput={inputHandler}>
         </Select> 
 
-        <Button type="submit" disabled={!formState.isValid}>
-          ADD ITEM
+        <Button type="submit" disabled={!formState.isValid} >
+        ADD ITEM
         </Button>
       </form>
+      </React.Fragment>
     );
   };
   

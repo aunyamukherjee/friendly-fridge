@@ -98,7 +98,7 @@ const UpdateFood = () => {
         setIsLoading(false);
       }, [setFormData, identifiedFood]);
 
-    const foodUpdateSumbitHandler = event => {
+    const foodUpdateSubmitHandler = event => {
         event.preventDefault();
         console.log('foodUpdateSubmitHandler:'+JSON.stringify(formState.inputs));
     };
@@ -121,7 +121,7 @@ const UpdateFood = () => {
         );
     }
 
-    return ( <form className='food-form' onSubmit = {foodUpdateSumbitHandler}>
+    return ( <form className='food-form' onSubmit = {foodUpdateSubmitHandler}>
         <Input
           id="name"
           element="input"

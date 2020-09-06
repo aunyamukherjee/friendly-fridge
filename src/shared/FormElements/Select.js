@@ -83,7 +83,7 @@ const { value, isValid} = inputState;
             <option value="vegetables">Vegetables</option>
             <option value="drinks">Drinks</option>
             <option value="carbs">Carbs</option>
-            <option value="fats">Fats</option>
+            <option value="5f43d1cca7812d8c3f87c2f6">Fats</option>
             <option value="highsugar">High Sugar</option>
         </select>
     );

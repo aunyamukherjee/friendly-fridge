@@ -16,17 +16,8 @@ router.post(
   [
     check('name')
       .not()
-      .isEmpty(),
-    check('details')
-      .not()
-      .isEmpty(),
-      check('expirydate')
-      .not()
-      .isEmpty(),  
+      .isEmpty(), 
     check('qty').isLength({ min: 1 }),
-    check('comments')
-      .not()
-      .isEmpty(),
     check('foodgroupid')
     .not()
     .isEmpty()

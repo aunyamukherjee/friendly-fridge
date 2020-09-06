@@ -57,7 +57,6 @@ const createFood = async (req, res, next) => {
         details,
         expirydate,
         qty,
-        datebought: new Date().toLocaleDateString(),
         comments,
         foodgroupid
     });
