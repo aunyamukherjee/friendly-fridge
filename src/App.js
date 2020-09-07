@@ -6,7 +6,7 @@ import Footer from './Footer';
 import Users from './Users/Users';
 
 import HomePageBody from './HomePageBody';
-//import UnauthenticatedHomePageBody from './HomePageBody/UnauthenticatedHomePageBody';
+import UnauthHomePageBody from './HomePageBody';
 
 import NewItem from "./NewItem/NewItem";
 import FoodItem from "./FoodItems/FoodItem";
@@ -61,7 +61,7 @@ const App = (props) => {
     routes=(
       <React.Fragment>
           <Route path="/" exact>
-            <HomePageBody />
+            <UnauthHomePageBody />
           </Route>
           {/* remove this from not logged in, just for testing purposes */}
           <Route path="/foodedit/:foodname" exact>

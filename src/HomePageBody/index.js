@@ -4,13 +4,18 @@ import ListofFoodGroups from "./ListofFoodGroups";
 import ErrorModal from "../shared/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
 import { useHttpClient } from '../shared/hooks/http-hook';
+import { AuthContext } from '../shared/context/auth-context';
+import { useContext } from 'react';
+import Button from "../shared/FormElements/Button";
 
 import './HomePageBody.css';
+
 
 
 const HomePageBody = (props) => {
     const {isLoading, error, sendRequest, clearError} = useHttpClient();
     const [loadedFoodgroups, setLoadedFoodgroups ] = useState([]);
+    const auth = useContext(AuthContext);
 
         useEffect(() => {
       
@@ -32,10 +37,24 @@ const HomePageBody = (props) => {
               <LoadingSpinner />
           </div>
         )}
-         <div className = "HomePageBody-container"> 
-        {!isLoading && loadedFoodgroups && 
-            <ListofFoodGroups items={loadedFoodgroups} />}
-        </div>
+        {auth.isLoggedIn && (
+          <div className = "HomePageBody-container"> 
+          {!isLoading && loadedFoodgroups && 
+              <ListofFoodGroups items={loadedFoodgroups} />}
+        </div> )}
+        {!auth.isLoggedIn && (
+          <form>
+          <div className = "HomePageBody-container"> 
+            <h5>Please login or create an account to use the Friendly Fridge!</h5>
+            <div>
+              <Button to="/auth">LOGIN</Button>
+              <Button to="/auth">SIGNUP</Button>
+            </div>
+          </div>
+          </form>
+
+        )}
+
      </React.Fragment>
      
     );

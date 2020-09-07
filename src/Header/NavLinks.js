@@ -15,11 +15,11 @@ const NavLinks = props => {
                 <NavLink to ="/food/new">ADD</NavLink>
             </li>
         )}
-                {auth.isLoggedIn && (
+                {/* {auth.isLoggedIn && (
             <li>
                 <NavLink to ="/users" exact>ALL USERS</NavLink>
             </li>
-        )}
+        )} */}
         {!auth.isLoggedIn && (
             <li>
 

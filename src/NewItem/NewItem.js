@@ -4,13 +4,14 @@ import { useHistory } from 'react-router-dom';
 import Input from '../shared/FormElements/Input.js';
 import Select from '../shared/FormElements/Select.js';
 import Button from '../shared/FormElements/Button';
-import Datepicker from '../shared/FormElements/Datepicker';
+//import Datepicker from '../shared/FormElements/Datepicker';
 import ErrorModal from '../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 
 import { useForm } from '../shared/hooks/form-hook';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import './NewItem.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 import { 
   VALIDATOR_REQUIRE, 
@@ -100,10 +101,10 @@ import {
 
         {/* <Datepicker
          id= "expirydate"
-         element="datepicker" 
+         element="input" 
          type="text" 
          label="Expiration Date" 
-         validators={[VALIDATOR_REQUIRE()]}
+         validators={[VALIDATOR_MINLENGTH(7)]}
          errorText="Please enter (mm/dd/yy)"
          onInput={inputHandler}/>   */}
 
@@ -114,7 +115,7 @@ import {
          label="Expiration Date"
          validators={[VALIDATOR_MINLENGTH(7)]}
          errorText="Please enter (mm/dd/yy)"
-         onInput={inputHandler} />
+         onInput={inputHandler} /> 
 
          <Input
          id ="qty"
@@ -124,6 +125,7 @@ import {
          validators={[VALIDATOR_REQUIRE()]} 
          errorText="Please enter a quantity"
          onInput={inputHandler}/>
+
          <Input
          id ="comments"
          element="textarea" 
@@ -131,6 +133,7 @@ import {
          validators={[VALIDATOR_REQUIRE()]} 
          errorText="Please enter a comment"
          onInput={inputHandler}/>
+
          <Select 
           id="foodgroupid"
           element="select"

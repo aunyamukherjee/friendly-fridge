@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FoodGroup.css';
-import Button from '../shared/FormElements/Button';
-
-
-
 
 const FoodGroup = props => {
 

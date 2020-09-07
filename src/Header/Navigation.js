@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import { AuthContext } from '../shared/context/auth-context';
+import { useContext } from 'react';
 
 import Header from "./index.js";
 import NavLinks from './NavLinks.js'
@@ -9,6 +11,7 @@ import './Navigation.css';
 
 const Navigation = props => {
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+    const auth = useContext(AuthContext);
     
     const openDrawer = () => {
         setDrawerIsOpen(true);
@@ -32,9 +35,11 @@ const Navigation = props => {
                     <span />
                     <span />
                 </button>
-            <h1 className ="Nav-Title">
-                <Link to="/">FriendlyFridge</Link>
-            </h1>
+                {/* {auth.isLoggedIn && (  */}
+                    <h1 className ="Nav-Title">
+                        <Link to ="/">FriendlyFridge</Link>
+                    </h1>
+                {/* )}  */}
             <nav className ="Header-Nav">
                 <NavLinks />
             </nav>
