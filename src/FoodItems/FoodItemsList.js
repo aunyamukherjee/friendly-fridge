@@ -14,7 +14,7 @@ const FoodItemsList = props => {
             </div>
             <div className="food-item__actions">
               {/* {auth.isLoggedIn && ( */}
-                <Button to={`/foods/${props.name}`}>VIEW</Button>
+                <Button to={`/foods/${props.id}`}>VIEW</Button>
               {/* )} */}
             </div>
           </Card>

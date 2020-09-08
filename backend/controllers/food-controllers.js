@@ -62,6 +62,7 @@ const createFood = async (req, res, next) => {
     });
     let foodgroup;
     try {
+        console.log('food-controller: foodgroupid='+foodgroupid);
         foodgroup = await Foodgroup.findById(foodgroupid);
     } catch (err) {
         const error = new HttpError(

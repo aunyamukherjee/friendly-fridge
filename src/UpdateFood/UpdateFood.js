@@ -1,45 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom';
+import React, { useEffect, useState  } from 'react';
+import {useParams, useHistory} from 'react-router-dom';
 import {useForm} from '../shared/hooks/form-hook';
 import Input from '../shared/FormElements/Input';
 import Button from '../shared/FormElements/Button';
 import Card from '../shared/UIElements/Card';
 import {VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH} from '../shared/util/validators';
+
+import { useHttpClient } from '../shared/hooks/http-hook';
+import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
+import ErrorModal from '../shared/UIElements/ErrorModal';
+
 import '../NewItem/FoodForm.css';
 
-const DUMMY_FOODS = [
-    {
-        id:'5f023dd42c651f6df1816997',
-        name:'Cherries',
-        details:'Bing Cherries',
-        expirydate:'08/12/2020',
-        qty:'6',
-        comments:'Very yummy',
-        foodgroupid:'u1'
-    },
-    {
-        id:'5f023dd42c651f6df1816907',
-        name:'Berries',
-        details:'Black Berries',
-        expirydate:'08/12/2020',
-        qty:'5',
-        comments:'Quite tart',
-        foodgroupid:'u1'
-    },
-    {
-        id:'345dgghh6',
-        name:'Apples',
-        details:'Gala',
-        expirydate:'08/15/2020',
-        qty:'5',
-        comments:'Use these for Salad',
-        foodgroupid:'u2'
-    }
-];
 
 const UpdateFood = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const foodname = useParams().foodname;
+    const {isLoading, error, sendRequest, clearError  } = useHttpClient();
+    const [loadedFood, setLoadedFood ] = useState();
+
+    const foodid = useParams().foodid;
+    const history = useHistory();
 
     const [formState,inputHandler, setFormData] = useForm({
         name: {
@@ -63,47 +42,75 @@ const UpdateFood = () => {
             isValid: false
         },
     },
-    false)
-
-    const identifiedFood = DUMMY_FOODS.find(p => p.name === foodname);
+    false);
 
     useEffect(() => {
-        if (identifiedFood) {
-          setFormData(
+        const fetchFood = async () => {
+        try { 
+         const responseData = await sendRequest(`http://localhost:5000/api/food/${foodid}`);
+         setLoadedFood(responseData.food);
+         setFormData(
             {
                 name: {
-                    value: identifiedFood.name,
+                    value: responseData.food.name,
                     isValid: true
                 },
                 details: {
-                    value: identifiedFood.details,
+                    value: responseData.food.details,
                     isValid: true
                 },
                 expirydate: {
-                    value: identifiedFood.expirydate,
+                    value: responseData.food.expirydate,
                     isValid: true
                 },
                 qty: {
-                    value: identifiedFood.qty,
+                    value: responseData.food.qty,
                     isValid: true
                 },
                 comments: {
-                    value: identifiedFood.comments,
+                    value: responseData.food.comments,
                     isValid: true
                 },
             },
             true
           );
-        }
-        setIsLoading(false);
-      }, [setFormData, identifiedFood]);
+        } catch (err) {}
+        };
+        fetchFood();
+    }, [sendRequest, foodid, setFormData]);
 
-    const foodUpdateSubmitHandler = event => {
+
+    const foodUpdateSubmitHandler = async event => {
         event.preventDefault();
-        console.log('foodUpdateSubmitHandler:'+JSON.stringify(formState.inputs));
-    };
+        try {
+        await sendRequest(
+            `http://localhost:5000/api/food/${foodid}`, 
+            'PATCH',
+            JSON.stringify({
+                name: formState.inputs.name.value,
+                details: formState.inputs.details.value,
+                expirydate: formState.inputs.expirydate.value,
+                qty: formState.inputs.qty.value,
+                comments: formState.inputs.comments.value
+            }), {
+                'Content-type': 'application/json'
 
-    if (!identifiedFood) {
+            }
+            )
+            history.push('/foods/'+foodid);
+        } catch (err) {}
+
+        };
+    
+    if (isLoading) {
+        return (
+            <div className='center'>
+                <LoadingSpinner />
+            </div>
+        );
+    }
+
+    if (!loadedFood && !error) {
         return (
         <div className="center">
             <Card>
@@ -113,15 +120,12 @@ const UpdateFood = () => {
         );
     }
 
-    if (isLoading) {
-        return (
-            <div className='center'>
-                <h2>Loading...</h2>
-            </div>
-        );
-    }
+ 
 
-    return ( <form className='food-form' onSubmit = {foodUpdateSubmitHandler}>
+    return ( 
+        <React.Fragment>
+            <ErrorModal error={error} onClear={clearError} />
+       {!isLoading && loadedFood && <form className='food-form' onSubmit = {foodUpdateSubmitHandler}>
         <Input
           id="name"
           element="input"
@@ -130,8 +134,8 @@ const UpdateFood = () => {
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid name."
           onInput={inputHandler}
-          initialValue={formState.inputs.name.value}
-         initialValid={formState.inputs.name.isValid}/>
+          initialValue={loadedFood.name}
+         initialValid={true}/>
         <Input
           id="details"
           element="textarea"
@@ -139,9 +143,9 @@ const UpdateFood = () => {
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText="Please enter a valid description (at least 5 characters)."
           onInput={inputHandler}
-          initialValue={formState.inputs.details.value}
-          initialValid={formState.inputs.details.isValid}/>
-        <Input
+          initialValue={loadedFood.details}
+         initialValid={true}/>        
+         <Input
          id= "expirydate"
          element="input" 
          type="text" 
@@ -149,8 +153,8 @@ const UpdateFood = () => {
          validators={[VALIDATOR_MINLENGTH(7)]} 
          errorText="Please enter (mm/dd/yy)"
          onInput={inputHandler}
-         initialValue={formState.inputs.expirydate.value}
-         initialValid={formState.inputs.expirydate.isValid}/>
+         initialValue={loadedFood.expirydate}
+         initialValid={true}/> 
          <Input
          id ="qty"
          element="input" 
@@ -159,8 +163,8 @@ const UpdateFood = () => {
          validators={[VALIDATOR_REQUIRE()]} 
          errorText="Please enter a quantity"
          onInput={inputHandler}
-         initialValue={formState.inputs.qty.value}
-         initialValid={formState.inputs.qty.isValid}/>
+         initialValue={loadedFood.qty}
+         initialValid={true}/> 
          <Input
          id ="comments"
          element="textarea" 
@@ -168,14 +172,16 @@ const UpdateFood = () => {
          validators={[VALIDATOR_REQUIRE()]} 
          errorText="Please enter a comment"
          onInput={inputHandler}
-         initialValue={formState.inputs.comments.value}
-         initialValid={formState.inputs.comments.isValid}/>
+         initialValue={loadedFood.comments}
+         initialValid={true}/> 
         <Button type="submit" disabled={!formState.isValid}>
           UPDATE ITEM
         </Button>
 
 
-</form>);
+</form>}
+
+</React.Fragment>);
 };
 
 export default UpdateFood;

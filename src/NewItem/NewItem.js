@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Input from '../shared/FormElements/Input.js';
-import Select from '../shared/FormElements/Select.js';
+import Select from '../shared/FormElements/Select2.js/index.js';
 import Button from '../shared/FormElements/Button';
 //import Datepicker from '../shared/FormElements/Datepicker';
 import ErrorModal from '../shared/UIElements/ErrorModal';
@@ -55,6 +55,8 @@ import {
     const history = useHistory();
     const itemSubmitHandler = async event => {
        event.preventDefault();
+       console.log('formState'+ formState);
+       console.log('NewItem: foodgroupid='+formState.inputs.foodgroupid.value);
       try {
         await sendRequest(
           'http://localhost:5000/api/food',

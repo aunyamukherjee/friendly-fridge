@@ -42,7 +42,7 @@ const App = (props) => {
           <Route path="/:foodgroupid/food" exact>
             <FoodGroupFoods />
           </Route>
-          <Route path="/foods/:foodname" exact>
+          <Route path="/foods/:foodid" exact>
             <FoodItem />
           </Route>
           <Route path="/food/new" exact>
@@ -51,7 +51,7 @@ const App = (props) => {
           <Route path="/users" exact>
             <Users />
           </Route>
-          <Route path="/foodedit/:foodname" exact>
+          <Route path="/foodedit/:foodid" exact>
             <UpdateFood/>
           </Route>
           <Redirect to="/" />
@@ -64,13 +64,13 @@ const App = (props) => {
             <UnauthHomePageBody />
           </Route>
           {/* remove this from not logged in, just for testing purposes */}
-          <Route path="/foodedit/:foodname" exact>
+          <Route path="/foodedit/:foodid" exact>
             <UpdateFood/>
           </Route>
           <Route path="/:foodgroupid/food" exact>
             <FoodGroupFoods />
           </Route>
-          <Route path="/foods/:foodname" exact>
+          <Route path="/foods/:foodid" exact>
             <FoodItem />
           </Route>
           <Route path="/auth" exact>

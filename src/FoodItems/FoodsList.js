@@ -15,6 +15,7 @@ const FoodsList = props => {
             qty={food.qty}
             comments={food.comments}
             foodgroupid={food.foodgroupid}
+            onDelete= {props.onDeleteFood}
             />)}
         </ul>)
 };

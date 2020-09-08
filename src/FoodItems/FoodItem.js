@@ -1,44 +1,21 @@
-import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
-import "./FoodItem.css";
+import React, {useEffect, useState} from 'react';
+import {useParams, useHistory } from 'react-router-dom';
+import { useHttpClient } from '../shared/hooks/http-hook';
 import Card from '../shared/UIElements/Card';
 import Button from '../shared/FormElements/Button';
 import Modal from '../shared/UIElements/Modal';
+import ErrorModal from '../shared/UIElements/ErrorModal';
+import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 
-const DUMMY_FOODS = [
-  {
-      id:'5f023dd42c651f6df1816997',
-      name:'Cherries',
-      details:'Bing Cherries',
-      expirydate:'08/12/2020',
-      qty:'6',
-      comments:'Very yummy',
-      foodgroupid:'u1'
-  },
-  {
-      id:'5f023dd42c651f6df1816907',
-      name:'Berries',
-      details:'Black Berries',
-      expirydate:'08/12/2020',
-      qty:'5',
-      comments:'Quite tart',
-      foodgroupid:'u1'
-  },
-  {
-      id:'345dgghh6',
-      name:'Apples',
-      details:'Gala',
-      expirydate:'08/15/2020',
-      qty:'5',
-      comments:'Use these for Salad',
-      foodgroupid:'u2'
-  }
-];
+
+import "./FoodItem.css";
 
 const FoodItem = props => {
-    //const auth = useContext(AuthContext);
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const history = useHistory();
+   const {isLoading, error, sendRequest, clearError} = useHttpClient();
   
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+
     const showDeleteWarningHandler = () => {
       setShowConfirmModal(true);
     };
@@ -47,16 +24,38 @@ const FoodItem = props => {
       setShowConfirmModal(false);
     };
   
-    const confirmDeleteHandler = () => {
+    const confirmDeleteHandler = async () => {
       setShowConfirmModal(false);
-      console.log('DELETING...');
-    };
-    const foodname = useParams().foodname;
+      console.log('Inside FoodItems: foodid='+ foodid);
+      try{
+        await sendRequest(
+          `http://localhost:5000/api/food/${foodid}`,
+          'DELETE'
+          );
+          props.onDelete(props.id);
+          history.push('/');
+      } catch (err) {}
+      
 
-    const identifiedFood = DUMMY_FOODS.find(p => p.name === foodname);
+      
+    };
+    const [identifiedFood, setIdentifiedFood ] = useState([]);
+    const foodid = useParams().foodid;
+
+    useEffect(() => {
+      
+      const fetchIdentifiedFood = async () => {
+        try {
+            const responseData = await sendRequest(`http://localhost:5000/api/food/${foodid}`);
+            setIdentifiedFood(responseData.food);
+        } catch (err) {}
+      };
+      fetchIdentifiedFood();
+    }, [sendRequest, foodid]);
 
     return (
         <React.Fragment>
+          <ErrorModal error={error} onClear={clearError} />
         <Modal
           show={showConfirmModal}
           onCancel={cancelDeleteHandler}
@@ -80,6 +79,7 @@ const FoodItem = props => {
         </Modal>
         <div className="food-item">
           <Card className="food-item__content">
+            {isLoading && <LoadingSpinner asOverlay />}
             <div className="food-item__info">
               <h2>{identifiedFood.name}</h2>
               <p>Details: {identifiedFood.details}</p>
@@ -89,7 +89,7 @@ const FoodItem = props => {
             </div>
             <div className="food-item__actions">
               {/* {auth.isLoggedIn && ( */}
-                <Button to={`/foodedit/${identifiedFood.name}`}>EDIT</Button>
+                <Button to={`/foodedit/${identifiedFood.id}`}>EDIT</Button>
               {/* )} */}
   
               {/* {auth.isLoggedIn && ( */}
