@@ -33,7 +33,7 @@ const FoodGroupFoods = props => {
       <ErrorModal error={error} onClear = {clearError}/>
       {isLoading && (
         <div>
-        <LoadingSpinner/>
+        <LoadingSpinner asOverlay/>
         </div>
       )}
       {!isLoading && loadedFoodGroupFoods &&
