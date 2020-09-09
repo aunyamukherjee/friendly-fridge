@@ -7,6 +7,7 @@ import { useHttpClient } from '../shared/hooks/http-hook';
 import { AuthContext } from '../shared/context/auth-context';
 import { useContext } from 'react';
 import Button from "../shared/FormElements/Button";
+import Card from "../shared/UIElements/Card";
 
 import './HomePageBody.css';
 
@@ -43,19 +44,19 @@ const HomePageBody = (props) => {
           {!isLoading && loadedFoodgroups && 
               <ListofFoodGroups items={loadedFoodgroups} />}
         </div>
-        <div>
+        <div className="Login-Card">
           <Button to="/foodgroup/new">ADD NEW FOODGROUP</Button>
         </div>
         </React.Fragment> )}
         {!auth.isLoggedIn && (
           <form>
-          <div className = "HomePageBody-container"> 
+          <Card className="Login-Card"> 
             <h5>Please login or create an account to use the Friendly Fridge!</h5>
             <div>
               <Button to="/auth">LOGIN</Button>
               <Button to="/auth">SIGNUP</Button>
             </div>
-          </div>
+          </Card>
           </form>
 
         )}

@@ -39,7 +39,7 @@ const FoodGroupFoods = props => {
       {!isLoading && loadedFoodGroupFoods &&
       <FoodsList items={loadedFoodGroupFoods} onDeleteFood={foodDeletedHandler} />}
       {loadedFoodGroupFoods.length ===0 && (
-        <Card>
+        <Card className="center">
           <h3>Looks like this foodgroup is empty! Want to add something?</h3>
           <Button to="/food/new">NEW FOOD</Button>
         </Card>

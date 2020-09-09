@@ -1,55 +1,10 @@
-.foodgroup-header {
-  text-align: center;
-  color: #ccc;
+.foodgroup-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
+  max-width: 50rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.foodgroup-item {
-    margin: 1rem;
-    column-count: 3;
-    width: auto;
-    min-width: 17.5rem;
-  }
-  
-  .foodgroup-item a {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    padding: 1rem;
-    color: white;
-    background: #292929;
-  }
-  
-  .foodgroup-item a:hover,
-  .foodgroup-item a:active {
-    background: #2d70d3;
-  }
-  
-  .foodgroup-item__content {
-    padding: 0;
-  }
-  
-  .foodgroup-item__image {
-    width: 4rem;
-    height: 4rem;
-    margin-right: 1rem;
-  }
-  
-  .foodgroup-item__info h2 {
-    font-size: 1.5rem;
-    margin: 0 0 0.5rem 0;
-    font-weight: normal;
-    color: black;
-    display: grid;
-  }
-  
-  .foodgroup-item:hover h2,
-  .foodgroup-item:active h2,
-  .foodgroup-item:hover h3,
-  .foodgroup-item:active h3 {
-    color: #292929;
-  }
-  
-  .foodgroup-item__info h3 {
-    margin: 0;
-  }

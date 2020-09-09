@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Card from '../shared/UIElements/Card';
 import './FoodGroup.css';
 
 const FoodGroup = props => {
@@ -11,18 +12,18 @@ const FoodGroup = props => {
         'props.foods='+ props.foods);
     }
     return (
-        <li>
-            <div>
+        <li className="foodgroup-item">
+            <Card className="foodgroup-item__content">
                 {/*This needs tp be dynamic, but i have to figure out what the routing url is for each thing */}
                 <Link to={`/${props.id}/food`}> 
-                    <div className="Food-Group">
+                    <div className="foodgroup-item__info">
                         <h2 
                             onClick={onClickHandler}>
                                 {props.name}
                         </h2>
                     </div>
                 </Link>
-            </div>
+            </Card>
         </li>
     );
 }
