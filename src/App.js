@@ -7,7 +7,7 @@ import Users from './Users/Users';
 
 import HomePageBody from './HomePageBody';
 import UnauthHomePageBody from './HomePageBody';
-
+import NewFoodGroup from './NewFoodGroup/NewFoodGroup';
 import NewItem from "./NewItem/NewItem";
 import FoodItem from "./FoodItems/FoodItem";
 import Auth from "./Auth";
@@ -47,6 +47,9 @@ const App = (props) => {
           </Route>
           <Route path="/food/new" exact>
             <NewItem />
+          </Route>
+          <Route path="/foodgroup/new" exact>
+            <NewFoodGroup />
           </Route>
           <Route path="/users" exact>
             <Users />

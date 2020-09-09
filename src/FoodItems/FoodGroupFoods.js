@@ -3,6 +3,8 @@ import{ useParams} from 'react-router-dom';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import ErrorModal from '../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
+import Button from '../shared/FormElements/Button';
+import Card from '../shared/UIElements/Card';
 
 import FoodsList from './FoodsList';
 
@@ -36,6 +38,13 @@ const FoodGroupFoods = props => {
       )}
       {!isLoading && loadedFoodGroupFoods &&
       <FoodsList items={loadedFoodGroupFoods} onDeleteFood={foodDeletedHandler} />}
+      {loadedFoodGroupFoods.length ===0 && (
+        <Card>
+          <h3>Looks like this foodgroup is empty! Want to add something?</h3>
+          <Button to="/food/new">NEW FOOD</Button>
+        </Card>
+      )
+      }
       
     </React.Fragment>);
 };

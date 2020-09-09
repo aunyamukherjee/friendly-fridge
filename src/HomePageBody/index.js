@@ -38,10 +38,15 @@ const HomePageBody = (props) => {
           </div>
         )}
         {auth.isLoggedIn && (
+          <React.Fragment>
           <div className = "HomePageBody-container"> 
           {!isLoading && loadedFoodgroups && 
               <ListofFoodGroups items={loadedFoodgroups} />}
-        </div> )}
+        </div>
+        <div>
+          <Button to="/foodgroup/new">ADD NEW FOODGROUP</Button>
+        </div>
+        </React.Fragment> )}
         {!auth.isLoggedIn && (
           <form>
           <div className = "HomePageBody-container"> 

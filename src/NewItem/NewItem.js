@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Input from '../shared/FormElements/Input.js';
-import Select from '../shared/FormElements/Select2.js/index.js';
+import Select from '../shared/FormElements/Select.js';
 import Button from '../shared/FormElements/Button';
 //import Datepicker from '../shared/FormElements/Datepicker';
 import ErrorModal from '../shared/UIElements/ErrorModal';
