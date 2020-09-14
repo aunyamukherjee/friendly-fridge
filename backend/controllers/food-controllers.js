@@ -49,53 +49,103 @@ if (!foods || foods.length === 0) {
     res.json({foods: foods.map(food => food.toObject({ getters: true })) });  
 }
 
+//createFood by FoodgroupId - old
+// const createFood = async (req, res, next) => {
+//     const {name, details, expirydate, qty, comments, foodgroupid } = req.body;
+//     const createdFood =  new Food({
+//         name,
+//         details,
+//         expirydate,
+//         qty,
+//         comments,
+//         foodgroupid
+//     });
+//     let foodgroup;
+//     try {
+//         console.log('food-controller: foodgroupid='+foodgroupid);
+//         foodgroup = await Foodgroup.findById(foodgroupid);
+//     } catch (err) {
+//         const error = new HttpError(
+//             'Creating food failed.  Please try again',
+//             500
+//         );
+//         return next(error);
+//     }
+//     if (!foodgroup) {
+//         const error = new HttpError(
+//             'Could not find foodgroup for the provided id',
+//             404
+//         );
+//         return next(error);
+//     }
 
+
+// try {
+//     const sess = await mongoose.startSession();
+//     sess.startTransaction();
+//     await createdFood.save({ session: sess });
+//     foodgroup.foods.push(createdFood);
+//     await foodgroup.save({ session: sess });
+//     await sess.commitTransaction();
+//   } catch (err) {
+//     const error = new HttpError(
+//       'Creating food failed, please try again.',
+//       500
+//     );
+//     return next(error);
+//   }
+
+//   res.status(201).json({ place: createdFood });
+// };
+
+//New createFood by foodgroupname
 const createFood = async (req, res, next) => {
-    const {name, details, expirydate, qty, comments, foodgroupid } = req.body;
-    const createdFood =  new Food({
-        name,
-        details,
-        expirydate,
-        qty,
-        comments,
-        foodgroupid
-    });
-    let foodgroup;
-    try {
-        console.log('food-controller: foodgroupid='+foodgroupid);
-        foodgroup = await Foodgroup.findById(foodgroupid);
-    } catch (err) {
-        const error = new HttpError(
-            'Creating food failed.  Please try again',
-            500
-        );
-        return next(error);
-    }
-    if (!foodgroup) {
-        const error = new HttpError(
-            'Could not find foodgroup for the provided id',
-            404
-        );
-        return next(error);
-    }
+  const {name, details, expirydate, qty, comments, foodgroupid } = req.body;
+  console.log("*******", name, details, expirydate, qty, comments, foodgroupid);
+  const createdFood =  new Food({
+      name,
+      details,
+      expirydate,
+      qty,
+      comments,
+      foodgroupid
+  });
+  let foodgroup;
+  try {
+      //Search foodgroupid by foodgroupname from Mongo first
+      foodgroup = await Foodgroup.findById(foodgroupid);
+  } catch (err) {
+      const error = new HttpError(
+          'Creating food failed.  Please try again',
+          500
+      );
+      return next(error);
+  }
+  if (!foodgroup) {
+      const error = new HttpError(
+          'Could not find foodgroup for the provided id',
+          404
+      );
+      return next(error);
+  }
 
 
 try {
-    const sess = await mongoose.startSession();
-    sess.startTransaction();
-    await createdFood.save({ session: sess });
-    foodgroup.foods.push(createdFood);
-    await foodgroup.save({ session: sess });
-    await sess.commitTransaction();
-  } catch (err) {
-    const error = new HttpError(
-      'Creating food failed, please try again.',
-      500
-    );
-    return next(error);
-  }
+  const sess = await mongoose.startSession();
+  sess.startTransaction();
+  await createdFood.save({ session: sess });
+  foodgroup.foods.push(createdFood);
+  await foodgroup.save({ session: sess });
+  await sess.commitTransaction();
+} catch (err) {
+  const error = new HttpError(
+    'Creating food failed, please try again.',
+    500
+  );
+  return next(error);
+}
 
-  res.status(201).json({ place: createdFood });
+res.status(201).json({ place: createdFood });
 };
 
 const updateFood = async (req, res, next) => {

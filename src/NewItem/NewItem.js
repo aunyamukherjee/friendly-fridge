@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Input from '../shared/FormElements/Input.js';
-import Select from '../shared/FormElements/Select.js';
+import Select from '../shared/FormElements/Select';
 import Button from '../shared/FormElements/Button';
 //import Datepicker from '../shared/FormElements/Datepicker';
 import ErrorModal from '../shared/UIElements/ErrorModal';
@@ -21,6 +22,8 @@ import {
   const NewItem = () => {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     
+    const foodgroupid = useSelector(state => state.foodgroupid);
+    console.log("foodgroupid in store: ", foodgroupid.eventKey);
     const [formState, inputHandler] = useForm(
       {
         name: {
@@ -33,7 +36,7 @@ import {
         },
         expirydate: {
             value: '',
-            isValid: true
+            isValid: false
         },
         qty: {
             value: '',
@@ -45,7 +48,9 @@ import {
         },
         foodgroupid: {
             value: '',
-            isValid: true
+            selected: '',
+            foodgroupid: '',
+            isValid: false
         }
 
       },
@@ -53,10 +58,12 @@ import {
     );
   
     const history = useHistory();
+
+
     const itemSubmitHandler = async event => {
        event.preventDefault();
-       console.log('formState'+ formState);
-       console.log('NewItem: foodgroupid='+formState.inputs.foodgroupid.value);
+       console.log('NewItem: foodgroupid='+foodgroupid.eventKey);
+       const fgid = foodgroupid.eventKey;
       try {
         await sendRequest(
           'http://localhost:5000/api/food',
@@ -67,7 +74,7 @@ import {
             expirydate: formState.inputs.expirydate.value,
             qty: formState.inputs.qty.value,
             comments: formState.inputs.comments.value,
-            foodgroupid: formState.inputs.foodgroupid.value
+            foodgroupid: fgid
           }),
           { 'Content-Type': 'application/json'}
         );
@@ -140,14 +147,18 @@ import {
           id="foodgroupid"
           element="select"
           label="Foodgroup"
-           validators={[VALIDATOR_REQUIRE()]} 
           errorText="Please enter a foodgroup"
-          onInput={inputHandler}>
-        </Select> 
+          // onInput={inputHandler}
+          onTouch={inputHandler}/>
 
-        <Button type="submit" disabled={!formState.isValid} >
+        {/* <Button type="submit" disabled={formState.isValid} >
+        ADD ITEM
+        </Button> */}
+
+        <Button type="submit"  >
         ADD ITEM
         </Button>
+
       </form>
       </React.Fragment>
     );
