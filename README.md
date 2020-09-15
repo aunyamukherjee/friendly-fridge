@@ -14,9 +14,12 @@ FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered 
 - Allow for multiple user entries
 
 ### Technical Highlights  
-- Makes use of state management tools  
+- Makes use of state management Redux store for state sharing between components  
 - Custom Hooks used for forms and http requests
--  
+- Makes use of Express on NodeJs for fast framework for network app development
+- makes use of Mongoose for object modeling on MongoDB
+- used MongoDB Atlas hosted service for ease of accessibility and deployment
+
 
 ## Application data
 ![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/Application%20data.png?raw=true)
