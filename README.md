@@ -1,74 +1,76 @@
 # FriendlyFridge
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered application.
-  - Easily access the contents of your fridge/pantry
-  - Organize Food Groupings as you choose
-  - Add, Update and Delete Food Items and Food Groups from within the app.
-### MVP Features! (Deliverables)
-  - User authenticated
-  - Header and Side Bar Navigation
-  - Categorize Food Item by Food Groups
-  - User customized Food Groups
-  - Fields to enter details, expiration date, quantity and comments
-  - ...
-##### Future Features
-- Allow for multiple user entries
-## Techincal Highlights
-- Makes use of state management tools
-- Custom Hooks used for forms and http requests
-##### Data Architecture
--
-##### UI Routes
--
-##### API Mapping
--
-##### Component Diagram
--
-##### Screenshot of Application
--
-### Resources Used
-- Big Thanks to Max '' whose '' udemy course greatly helped and influenced this app. (linked here)
-### Tech
-FriendlyFridge utilizes a MERN Stack to run properly:
-* [React] - //HTML enhanced for web apps//
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework
-* [MongoDB] - //
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-### Installation
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
-Install the dependencies and devDependencies and start the server.
-sh
-$ cd dillinger
-$ npm install -d
-$ node app
-For production environments...
-sh
-$ npm install --production
-$ NODE_ENV=production node app
-### Dependencies
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [node.js]: <http://nodejs.org>
-   [React]: <https://reactjs.org/>
-   [express]: <http://expressjs.com>
-   [MongoDB]: <https://www.mongodb.com/>
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered application. 
+- Easily access the contents of your fridge/pantry  
+- Organize Food Groupings as you choose  
+- Add, Update and Delete Food Items and Food Groups from within the app.
 
+### MVP Features! (Deliverables) - User authenticated  
+- Header and Side Bar Navigation  
+- Categorize Food Item by Food Groups  
+- User customized Food Groups  
+- Fields to enter details, expiration date, quantity and comments  
+- ...
+### Future Features
+- Allow for multiple user entries
+
+### Technical Highlights  
+- Makes use of state management tools  
+- Custom Hooks used for forms and http requests
+-  
+
+## Application data
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/Application%20data.png?raw=true)
+
+  
+
+## API Mapping
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/API%20mappings.png?raw=true)
+  
+
+##  Single Page Application Pages
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/Single%20Page%20App%20Pages.png?raw=true)
+
+
+## Screenshot of Application  
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/view%20items%20in%20foodgroup.png?raw=true)
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/item%20details.png?raw=true)
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/error_no_food.png?raw=true)
+
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/display-all-foodgroups.png?raw=true)
+
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/add_food_items.png?raw=true)
+
+![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/error%20reminder.png?raw=true)
+##  Resources Used
+
+ Big Thanks to [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)'' whose '' [udemy course](https://www.udemy.com/share/102fVSBUcbeV5bRng=/) greatly helped and influenced this app. 
+
+##  TechFriendlyFridge dependencies
+
+utilizes a MERN Stack to run properly:
+
+* [ReactJS](https://reactjs.org)- Open Source JS library for building UI or UI components
+* [node.js](%28https://nodejs.org/en/%29) - evented I/O for the backend with Javascript 
+* [ExpressJS](https://expressjs.com) - fast node.js network app framework  
+* [MongoDB](https://www.mongodb.com)- MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era.
+* [Mongoose](https://mongoosejs.com) - elegant mongodb object modeling for node.js 
+
+
+### FriendlyFridge requires [Node.js]([https://nodejs.org/](https://nodejs.org/)) v4+ to run.Install the dependencies and devDependencies and start the server.
+
+##  How to run the application
+For frontend
+sh  
+$ cd friendlyfridge  
+$ npm install -d  
+$ npm start
+(starts app on localhost:3000)
+
+For backend
+sh  
+$ cd friendlyfridge
+$ cd backend  
+$ npm install -d  
+$ npm start
+(starts server on localhost:5000)
 
