@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -23,7 +23,6 @@ import {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     
     const foodgroupid = useSelector(state => state.foodgroupid);
-    console.log("foodgroupid in store: ", foodgroupid.eventKey);
     const [formState, inputHandler] = useForm(
       {
         name: {
@@ -62,8 +61,7 @@ import {
 
     const itemSubmitHandler = async event => {
        event.preventDefault();
-       console.log('NewItem: foodgroupid='+foodgroupid.eventKey);
-       const fgid = foodgroupid.eventKey;
+
       try {
         await sendRequest(
           'http://localhost:5000/api/food',
@@ -74,7 +72,7 @@ import {
             expirydate: formState.inputs.expirydate.value,
             qty: formState.inputs.qty.value,
             comments: formState.inputs.comments.value,
-            foodgroupid: fgid
+            foodgroupid: foodgroupid
           }),
           { 'Content-Type': 'application/json'}
         );

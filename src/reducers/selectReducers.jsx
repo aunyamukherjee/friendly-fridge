@@ -4,7 +4,6 @@ const initialState = {
 }
 
 export const selectReducer = (state = initialState, action) => {
-    console.log('Inside selectReducer: action.foodgroupid=',action.foodgroupid );
     switch (action.type) {
         case "SELECTED":
             //LOGIC FOR Selected

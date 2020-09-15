@@ -11,7 +11,7 @@ import './Navigation.css';
 
 const Navigation = props => {
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-    const auth = useContext(AuthContext);
+    //const auth = useContext(AuthContext);
     
     const openDrawer = () => {
         setDrawerIsOpen(true);
