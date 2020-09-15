@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FriendlyFridge
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered application.
+  - Easily access the contents of your fridge/pantry
+  - Organize Food Groupings as you choose
+  - Add, Update and Delete Food Items and Food Groups from within the app.
+### MVP Features! (Deliverables)
+  - User authenticated
+  - Header and Side Bar Navigation
+  - Categorize Food Item by Food Groups
+  - User customized Food Groups
+  - Fields to enter details, expiration date, quantity and comments
+  - ...
+##### Future Features
+- Allow for multiple user entries
+## Techincal Highlights
+- Makes use of state management tools
+- Custom Hooks used for forms and http requests
+##### Data Architecture
+-
+##### UI Routes
+-
+##### API Mapping
+-
+##### Component Diagram
+-
+##### Screenshot of Application
+-
+### Resources Used
+- Big Thanks to Max '' whose '' udemy course greatly helped and influenced this app. (linked here)
+### Tech
+FriendlyFridge utilizes a MERN Stack to run properly:
+* [React] - //HTML enhanced for web apps//
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework
+* [MongoDB] - //
+And of course Dillinger itself is open source with a [public repository][dill]
+ on GitHub.
+### Installation
+Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
+Install the dependencies and devDependencies and start the server.
+sh
+$ cd dillinger
+$ npm install -d
+$ node app
+For production environments...
+sh
+$ npm install --production
+$ NODE_ENV=production node app
+### Dependencies
+Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
+| Plugin | README |
+| ------ | ------ |
+| Dropbox | [plugins/dropbox/README.md][PlDb] |
+| GitHub | [plugins/github/README.md][PlGh] |
+| Google Drive | [plugins/googledrive/README.md][PlGd] |
+| OneDrive | [plugins/onedrive/README.md][PlOd] |
+| Medium | [plugins/medium/README.md][PlMe] |
+| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
+   [node.js]: <http://nodejs.org>
+   [React]: <https://reactjs.org/>
+   [express]: <http://expressjs.com>
+   [MongoDB]: <https://www.mongodb.com/>
+   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
+   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
+   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
+   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
+   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
+   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
