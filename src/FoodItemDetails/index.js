@@ -33,10 +33,6 @@ const FoodItemDetails = (props) => {
                 <p>Food Group:</p>
                 <input type="text" onChange= {props.changed} value = {props.name} />
             </div>
-            <div className= "FoodItemDetails-items">
-                <p>Comments:</p>
-                <input type="text" onChange= {props.changed} value = {props.name} />
-            </div>
             <div className = "button">
                 <button
                     style = {style}

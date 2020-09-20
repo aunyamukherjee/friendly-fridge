@@ -85,7 +85,6 @@ const FoodItem = props => {
               <p>Details: {identifiedFood.details}</p>
               <p>Expiration Date: {identifiedFood.expirydate}</p>
               <p>Quantity: {identifiedFood.qty}</p>
-              <p>Comments: {identifiedFood.comments}</p>
             </div>
             <div className="food-item__actions">
               {/* {auth.isLoggedIn && ( */}

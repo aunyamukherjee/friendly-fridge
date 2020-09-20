@@ -37,10 +37,6 @@ const UpdateFood = () => {
             value: '',
             isValid: false
         },
-        comments: {
-            value: '',
-            isValid: false
-        },
     },
     false);
 
@@ -67,10 +63,6 @@ const UpdateFood = () => {
                     value: responseData.food.qty,
                     isValid: true
                 },
-                comments: {
-                    value: responseData.food.comments,
-                    isValid: true
-                },
             },
             true
           );
@@ -91,7 +83,6 @@ const UpdateFood = () => {
                 details: formState.inputs.details.value,
                 expirydate: formState.inputs.expirydate.value,
                 qty: formState.inputs.qty.value,
-                comments: formState.inputs.comments.value
             }), {
                 'Content-type': 'application/json'
 
@@ -164,15 +155,6 @@ const UpdateFood = () => {
          errorText="Please enter a quantity"
          onInput={inputHandler}
          initialValue={loadedFood.qty}
-         initialValid={true}/> 
-         <Input
-         id ="comments"
-         element="textarea" 
-         label="Comments" 
-         validators={[VALIDATOR_REQUIRE()]} 
-         errorText="Please enter a comment"
-         onInput={inputHandler}
-         initialValue={loadedFood.comments}
          initialValid={true}/> 
         <Button type="submit" disabled={!formState.isValid}>
           UPDATE ITEM

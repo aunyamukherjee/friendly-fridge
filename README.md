@@ -8,7 +8,7 @@ FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered 
 - Header and Side Bar Navigation  
 - Categorize Food Item by Food Groups  
 - User customized Food Groups  
-- Fields to enter details, expiration date, quantity and comments  
+- Fields to enter details, expiration date, quantity and foodgroup  
 - ...
 ### Future Features
 - Allow for multiple user entries

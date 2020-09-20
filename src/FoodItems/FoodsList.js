@@ -13,7 +13,6 @@ const FoodsList = props => {
             details ={food.details}
             expirydate = {food.expirydate}
             qty={food.qty}
-            comments={food.comments}
             foodgroupid={food.foodgroupid}
             onDelete= {props.onDeleteFood}
             />)}

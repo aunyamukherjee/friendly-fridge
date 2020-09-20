@@ -8,7 +8,6 @@ const foodSchema = new Schema({
     details: { type: String, required: true },
     expirydate: { type: String, required: true },
     qty: { type: String, required: true },
-    comments: { type: String, required: false },
     foodgroupid: { type: mongoose.Types.ObjectId, required: true, ref: 'Foodgroup'}
 });
 

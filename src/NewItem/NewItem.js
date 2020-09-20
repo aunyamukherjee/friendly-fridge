@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Input from '../shared/FormElements/Input.js';
 import Select from '../shared/FormElements/Select';
 import Button from '../shared/FormElements/Button';
-//import Datepicker from '../shared/FormElements/Datepicker';
+import Datepicker from '../shared/FormElements/Datepicker';
 import ErrorModal from '../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 
@@ -23,6 +23,7 @@ import {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     
     const foodgroupid = useSelector(state => state.foodgroupid);
+    const expiryDate = useSelector(state => state.expirydate);
     const [formState, inputHandler] = useForm(
       {
         name: {
@@ -34,14 +35,10 @@ import {
           isValid: false
         },
         expirydate: {
-            value: '',
+            expirydate: '',
             isValid: false
         },
         qty: {
-            value: '',
-            isValid: false
-        },
-        comments: {
             value: '',
             isValid: false
         },
@@ -61,7 +58,6 @@ import {
 
     const itemSubmitHandler = async event => {
        event.preventDefault();
-
       try {
         await sendRequest(
           'http://localhost:5000/api/food',
@@ -69,9 +65,9 @@ import {
           JSON.stringify({
             name: formState.inputs.name.value,
             details: formState.inputs.details.value,
-            expirydate: formState.inputs.expirydate.value,
+            // expirydate: formState.inputs.expirydate.value,
+            expirydate: expiryDate,
             qty: formState.inputs.qty.value,
-            comments: formState.inputs.comments.value,
             foodgroupid: foodgroupid
           }),
           { 'Content-Type': 'application/json'}
@@ -106,23 +102,26 @@ import {
           onInput={inputHandler}
         />
 
-        {/* <Datepicker
+        <Datepicker
          id= "expirydate"
          element="input" 
          type="text" 
          label="Expiration Date" 
          validators={[VALIDATOR_MINLENGTH(7)]}
          errorText="Please enter (mm/dd/yy)"
-         onInput={inputHandler}/>   */}
+         onInput={inputHandler}
+         onChange={inputHandler}
+         onSelect={inputHandler}
+         />   
 
-        <Input
+        {/* <Input
          id= "expirydate"
          element="input"
          type="text"
          label="Expiration Date"
          validators={[VALIDATOR_MINLENGTH(7)]}
          errorText="Please enter (mm/dd/yy)"
-         onInput={inputHandler} /> 
+         onInput={inputHandler} />  */}
 
          <Input
          id ="qty"
@@ -133,14 +132,6 @@ import {
          errorText="Please enter a quantity"
          onInput={inputHandler}/>
 
-         <Input
-         id ="comments"
-         element="textarea" 
-         label="Comments" 
-         validators={[VALIDATOR_REQUIRE()]} 
-         errorText="Please enter a comment"
-         onInput={inputHandler}/>
-
          <Select 
           id="foodgroupid"
           element="select"
@@ -149,13 +140,13 @@ import {
           // onInput={inputHandler}
           onTouch={inputHandler}/>
 
-        {/* <Button type="submit" disabled={formState.isValid} >
-        ADD ITEM
-        </Button> */}
-
-        <Button type="submit"  >
+        <Button type="submit" disabled={formState.isValid} >
         ADD ITEM
         </Button>
+
+        {/* <Button type="submit"  >
+        ADD ITEM
+        </Button> */}
 
       </form>
       </React.Fragment>
