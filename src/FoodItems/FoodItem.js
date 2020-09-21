@@ -26,18 +26,14 @@ const FoodItem = props => {
   
     const confirmDeleteHandler = async () => {
       setShowConfirmModal(false);
-      console.log('Inside FoodItems: foodid='+ foodid);
       try{
         await sendRequest(
           `http://localhost:5000/api/food/${foodid}`,
           'DELETE'
           );
-          props.onDelete(props.id);
-          history.push('/');
-      } catch (err) {}
-      
-
-      
+      history.push(`/${identifiedFood.foodgroupid}/food`);
+      props.onDelete(props.id);
+      } catch (err) {} 
     };
     const [identifiedFood, setIdentifiedFood ] = useState([]);
     const foodid = useParams().foodid;

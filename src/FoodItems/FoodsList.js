@@ -5,6 +5,8 @@ import './FoodsList.css';
 
 const FoodsList = props => {
     return(
+        <React.Fragment>
+        <h2>FoodGroup Name goes here(?)</h2>
         <ul className="foods-list">
             {props.items.map(food => <FoodItemsList 
             key={food.id} 
@@ -16,7 +18,8 @@ const FoodsList = props => {
             foodgroupid={food.foodgroupid}
             onDelete= {props.onDeleteFood}
             />)}
-        </ul>)
+        </ul>
+        </React.Fragment>)
 };
 
 export default FoodsList;

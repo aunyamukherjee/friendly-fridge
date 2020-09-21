@@ -37,6 +37,7 @@ const FoodGroupFoods = props => {
         </div>
       )}
       {!isLoading && loadedFoodGroupFoods &&
+      
       <FoodsList items={loadedFoodGroupFoods} onDeleteFood={foodDeletedHandler} />}
       {loadedFoodGroupFoods.length ===0 && (
         <Card className="center">

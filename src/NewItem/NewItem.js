@@ -73,7 +73,7 @@ import {
           { 'Content-Type': 'application/json'}
         );
 
-        history.push('/');
+        history.push(`/${foodgroupid}/food`);
         // Redirect the user to a different page
       } catch ( err) {};
   
