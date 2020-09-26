@@ -1,0 +1,62 @@
+/* .Food-Group {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    flex-direction: row;
+    color: white;
+    padding: 1em;
+    margin: 1em;
+    background-color:rgba(163, 184, 193, 0.92); 
+    box-shadow: 3px 3px 3px black;
+    flex-wrap: wrap;
+    width: 50%;
+  }
+  .food-container {
+    height: 20rem;
+    width: 100%;
+  } */
+
+  .foodgroup-item {
+    margin: 1rem;
+    width: calc(45% - 2rem);
+    min-width: 17.5rem;
+  }
+  
+  .foodgroup-item a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 1rem;
+    color: white;
+    background: #292929;
+  }
+  
+  .foodgroup-item a:hover,
+  .foodgroup-item a:active {
+    background:  rgb(88, 198, 206);;
+  }
+  
+  .foodgroup-item__content {
+    padding: 0;
+  }
+
+  
+  .foodgroup-item__info h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
+    color: rgb(88, 198, 206);;
+  }
+  
+  .foodgroup-item:hover h2,
+  .foodgroup-item:active h2,
+  .foodgroup-item:hover h3,
+  .foodgroup-item:active h3 {
+    color: #292929;
+  }
+  
+  .foodgroup-item__info h3 {
+    margin: 0;
+  }

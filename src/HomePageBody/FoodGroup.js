@@ -14,7 +14,6 @@ const FoodGroup = props => {
     return (
         <li className="foodgroup-item">
             <Card className="foodgroup-item__content">
-                {/*This needs tp be dynamic, but i have to figure out what the routing url is for each thing */}
                 <Link to={`/${props.id}/food`}> 
                     <div className="foodgroup-item__info">
                         <h2 

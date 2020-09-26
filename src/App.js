@@ -13,6 +13,7 @@ import FoodItem from "./FoodItems/FoodItem";
 import Auth from "./Auth";
 import FoodGroupFoods from "./FoodItems/FoodGroupFoods";
 import UpdateFood from './UpdateFood/UpdateFood';
+import DeleteFoodGroup from './DeleteFoodGroup/DeleteFoodGroup';
 
 import { AuthContext } from './shared/context/auth-context';
 
@@ -51,6 +52,9 @@ const App = (props) => {
           <Route path="/foodgroup/new" exact>
             <NewFoodGroup />
           </Route>
+          <Route path="/foodgroup/delete" exact>
+            <DeleteFoodGroup />
+          </Route>
           <Route path="/users" exact>
             <Users />
           </Route>
@@ -66,7 +70,6 @@ const App = (props) => {
           <Route path="/" exact>
             <UnauthHomePageBody />
           </Route>
-          {/* remove this from not logged in, just for testing purposes */}
           <Route path="/foodedit/:foodid" exact>
             <UpdateFood/>
           </Route>
