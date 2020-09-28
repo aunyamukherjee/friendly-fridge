@@ -1,15 +1,20 @@
 const express = require('express');
 const HttpError = require('../models/http-error');
 const { check } = require('express-validator');
+const checkAuth = require('../middleware/check-auth');
 
 
 const router = express.Router();
 
 const foodControllers = require('../controllers/food-controllers');
 
+
+
 router.get('/:fid', foodControllers.getFoodById);
 
 router.get('/foodgroup/:fgid', foodControllers.getFoodsByFoodGroupId);
+
+
 
 router.post(
   '/',
@@ -32,11 +37,13 @@ router.patch(
     check('name')
       .not()
       .isEmpty(),
-    check('details').isLength({ min: 5 })
+    check('details').isLength({ min: 1 })
   ],
   foodControllers.updateFood
 );
 
 router.delete('/:fid', foodControllers.deleteFood);
+
+router.use(checkAuth);
 
 module.exports = router;

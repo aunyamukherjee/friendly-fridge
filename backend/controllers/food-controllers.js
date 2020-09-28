@@ -52,6 +52,12 @@ if (!foods || foods.length === 0) {
 //New createFood by foodgroupname
 const createFood = async (req, res, next) => {
   const {name, details, expirydate, qty, foodgroupid } = req.body;
+  console.log('req.body.name='+req.body.name);
+  console.log('req.body.details='+req.body.details);
+  console.log('req.body.expirydate='+req.body.expirydate);
+  console.log('req.body.qty='+req.body.qty);
+  console.log('req.body.foodgroupid='+req.body.foodgroupid);
+
   console.log("*******", name, details, expirydate, qty, foodgroupid);
   const createdFood =  new Food({
       name,
@@ -94,21 +100,32 @@ try {
   );
   return next(error);
 }
-
+//check for place?
 res.status(201).json({ place: createdFood });
 };
 
 const updateFood = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return next(
-      new HttpError('Invalid inputs passed, please check your data.', 422)
-    );
-  }
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   return next(
+  //     new HttpError('Invalid inputs passed, please check your data.', 422)
+  //   );
+  // }
 
   const {name, details, qty } = req.body;
   const foodId = req.params.fid;
+  console.log('req.body='+ JSON.stringify(req.body));
+  console.log('req.params='+ JSON.stringify(req.params));
+  console.log('req.payload='+ JSON.stringify(req.payload));
 
+  console.log('req.body.name='+req.body.name);
+  console.log('req.body.details='+req.body.details);
+  console.log('req.body.qty='+req.body.qty);
+  console.log('req.params.fid='+req.params.fid);
+
+
+//  const {name, details, expirydate, qty, foodgroupid } = req.body;
+  console.log("*******", name, details, qty, foodId);
 
   let food;
   try {
@@ -130,8 +147,8 @@ const updateFood = async (req, res, next) => {
         );
         return next(error);
       }
-    res.status(200).json({food: food.toObject({ getters: true })});
-
+//    res.status(200).json({food: food.toObject({ getters: true })});
+    res.status(200).json({food: food});
 };
 
 const deleteFood = async (req, res, next) => {

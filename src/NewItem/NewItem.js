@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 
 import Input from '../shared/FormElements/Input.js';
 import Select from '../shared/FormElements/Select';
@@ -11,6 +12,7 @@ import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 
 import { useForm } from '../shared/hooks/form-hook';
 import { useHttpClient } from '../shared/hooks/http-hook';
+import { AuthContext } from '../shared/context/auth-context';
 import './NewItem.css';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -18,8 +20,10 @@ import {
   VALIDATOR_REQUIRE, 
   VALIDATOR_MINLENGTH
 } from '../shared/util/validators';
+import Auth from '../Auth/index.js';
 
   const NewItem = () => {
+    const auth = useContext(AuthContext);
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
     
     const foodgroupid = useSelector(state => state.foodgroupid);
@@ -58,7 +62,19 @@ import {
 
     const itemSubmitHandler = async event => {
        event.preventDefault();
+
       try {
+        const formData = new FormData();
+        formData.append('name', formState.inputs.name.value);
+        formData.append('details', formState.inputs.details.value);
+        formData.append('expirydate', expiryDate);
+        formData.append('qty', formState.inputs.qty.value);
+        formData.append('foodgroupid', foodgroupid);
+        console.log('NewItem:itemSubmitHandler:name='+formState.inputs.name.value);
+        console.log('NewItem:itemSubmitHandler:details='+formState.inputs.details.value);
+        console.log('NewItem:itemSubmitHandler:expirydate='+expiryDate);
+        console.log('NewItem:itemSubmitHandler:qty='+formState.inputs.qty.value);
+        console.log('NewItem:itemSubmitHandler:foodgroupid='+foodgroupid);
         await sendRequest(
           'http://localhost:5000/api/food',
           'POST',
@@ -70,12 +86,16 @@ import {
             qty: formState.inputs.qty.value,
             foodgroupid: foodgroupid
           }),
-          { 'Content-Type': 'application/json'}
+          //formData,
+          { 
+            'Content-Type': 'application/json' , 
+             Authorization: 'Bearer '+ auth.token 
+          }
         );
 
         history.push(`/${foodgroupid}/food`);
         // Redirect the user to a different page
-      } catch ( err) {};
+      } catch (err) {};
   
     };
 

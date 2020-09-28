@@ -21,19 +21,22 @@ const App = (props) => {
 
   // since i got rid of the state portion in this code
   // I could change this back to a function (did it)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(false);
+  const [userId, setUserId] = useState(false);
 
-  const login = useCallback(() => {
-    setIsLoggedIn(true);
+  const login = useCallback((uid, token) => {
+    setToken(token);
+    setUserId(uid);
   }, []);
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
+    setToken(null);
+    setUserId(null);
   }, []);
 
   let routes;
 
-  if (isLoggedIn) {
+  if (token) {
     routes=(
       <React.Fragment>
           <Route path="/" exact>
@@ -86,7 +89,13 @@ const App = (props) => {
     return (
       <div>
         <AuthContext.Provider
-          value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}
+          value={{
+            isLoggedIn: !!token, 
+            token: token,
+            userId: userId,
+            login: login, 
+            logout: logout
+          }}
         >
           <Router>
             <Navigation className="Header"/>
