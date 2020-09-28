@@ -1,0 +1,41 @@
+.Login-Card {
+  width: 90%;
+  max-width: 25rem;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+
+
+.HomePageBody-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 90%;
+    
+  }
+/* 
+  .staticText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+  }
+
+  .Food-Group {
+    display: flex;
+    align-items: right;
+    flex-direction: row;
+    color: white;
+    background-color:rgba(163, 184, 193, 0.92); 
+    box-shadow: 3px 3px 3px black;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 90%;
+    max-width: 50rem;
+    justify-content: center;
+  } */
+

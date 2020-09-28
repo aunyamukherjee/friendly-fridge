@@ -1,6 +1,6 @@
 import React, { useEffect, useState }  from 'react';
 
-import ListofFoodGroups from "./ListofFoodGroups";
+import ListofFoodGroups_delete from "./ListofFoodGroups_delete";
 import ErrorModal from "../shared/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
 import { useHttpClient } from '../shared/hooks/http-hook';
@@ -9,11 +9,11 @@ import { useContext } from 'react';
 import Button from "../shared/FormElements/Button";
 import Card from "../shared/UIElements/Card";
 
-import './HomePageBody.css';
+import './DeleteFoodGroup.css';
 
 
 
-const HomePageBody = (props) => {
+const DeleteFoodGroup = (props) => {
     const {isLoading, error, sendRequest, clearError} = useHttpClient();
     const [loadedFoodgroups, setLoadedFoodgroups ] = useState([]);
     const auth = useContext(AuthContext);
@@ -35,31 +35,14 @@ const HomePageBody = (props) => {
         <ErrorModal error={error} onClear={clearError} />
         {isLoading && (
           <div className="center">
-              <LoadingSpinner asOverlay/>
+              <LoadingSpinner />
           </div>
         )}
         {auth.isLoggedIn && (
-          <React.Fragment>
           <div className = "HomePageBody-container"> 
           {!isLoading && loadedFoodgroups && 
-              <ListofFoodGroups items={loadedFoodgroups} />}
+              <ListofFoodGroups_delete items={loadedFoodgroups} />}
         </div>
-        <div className="Login-Card">
-        <Button danger to="/foodgroup/delete">DELETE FOODGROUP</Button>
-        <Button to="/foodgroup/new">ADD NEW FOODGROUP</Button> 
-        </div>
-        </React.Fragment> )}
-        {!auth.isLoggedIn && (
-          <form>
-          <Card className="Login-Card"> 
-            <h5>Please login or create an account to use the Friendly Fridge!</h5>
-            <div>
-              <Button to="/auth">LOGIN</Button>
-              <Button to="/auth">SIGNUP</Button>
-            </div>
-          </Card>
-          </form>
-
         )}
 
      </React.Fragment>
@@ -67,4 +50,4 @@ const HomePageBody = (props) => {
     );
 }
 
-export default HomePageBody;
+export default DeleteFoodGroup;
