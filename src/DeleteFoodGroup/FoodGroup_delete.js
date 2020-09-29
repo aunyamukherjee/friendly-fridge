@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../shared/UIElements/Card';
 import './FoodGroup_delete.css';
@@ -8,10 +8,12 @@ import Button from '../shared/FormElements/Button';
 import Modal from '../shared/UIElements/Modal';
 import ErrorModal from '../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
+import { AuthContext } from '../shared/context/auth-context';
 
 
 const FoodGroup_delete = props => {
 
+  const auth = useContext(AuthContext);
     const history = useHistory();
    const {isLoading, error, sendRequest, clearError} = useHttpClient();
   
@@ -29,10 +31,15 @@ const FoodGroup_delete = props => {
       setShowConfirmModal(false);
       try{
         await sendRequest(
-          `http://localhost:5000/api/foodgroup/${foodgroupid}`,
+          `http://localhost:5000/api/foodgroups/${foodgroupid}`,
           'DELETE'
+          // { 
+          //   // 'Content-Type': 'application/json' , 
+          //    Authorization: 'Bearer '+ auth.token 
+          // }
           );
-      history.push(`/foodgroup/delete`);
+
+      history.push(`/`);
       props.onDelete(props.id);
       } catch (err) {} 
     };

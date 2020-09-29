@@ -53,28 +53,47 @@ const createFoodgroup = async (req, res, next) => {
 
  const deleteFoodgroup = async (req, res, next) => {
     const foodgroupId = req.params.fgid;
+    console.log('foodgroupid='+foodgroupId);
     let foodgroup;
-    try {
-      foodgroup = await Foodgroup.findById(foodgroupId);
-    } catch (err) {
-      const error = new HttpError(
-        'Something went wrong, could not delete foodgroup.',
-        500
-      );
-      return next(error);
-    }
-  
+    // try {
+        console.log('foodgroupId='+foodgroupId);
+        // foodgroup = await Foodgroup.findByIdAndDelete(foodgroupId);
+        foodgroup = await Foodgroup.findById(foodgroupId);
+        Foodgroup.findByIdAndDelete(foodgroupId, function (err, docs) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("Result: "+docs);
+            }
+        });
+    //   foodgroup = await Foodgroup.findById(foodgroupId);
+    //   console.log('foodgroup object='+JSON.stringify(foodgroup));
+    // } catch (err) {
+    //   const error = new HttpError(
+    //     'Something went wrong, could not delete foodgroup.',
+    //     500
+    //   );
+    //   return next(error);
+    // }
+  console.log("foodgroup="+foodgroup);
     if (!foodgroup) {
       const error = new HttpError('Could not find foodgroup for this id.', 404);
       return next(error);
     }
   
   try {
-      const sess = await mongoose.startSession();
-      sess.startTransaction();
-      await foodgroup.remove({ session: sess });
-      await foodgroup.save({session: sess});
-      await sess.commitTransaction();
+    //   console.log('Creating Sess');
+    //   const sess = await mongoose.startSession();
+    //   console.log('Sess Created');
+    //   sess.startTransaction();
+    //   console.log('Trans started');
+      await foodgroup.remove();
+      console.log('Foodgroup removed');
+    //   await foodgroup.save();
+    //   console.log('foodgroup saved');
+    //   await sess.commitTransaction();
+    //   console.log('Committing Trans');
     } catch (err) {
       const error = new HttpError(
         'Something went wrong here, could not delete foodgroup.',
