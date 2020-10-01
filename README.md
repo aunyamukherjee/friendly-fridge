@@ -8,18 +8,15 @@ FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered 
 - Header and Side Bar Navigation  
 - Categorize Food Item by Food Groups  
 - User customized Food Groups  
-- Fields to enter details, expiration date, quantity and foodgroup  
+- Fields to enter details, expiration date, quantity and comments  
 - ...
 ### Future Features
 - Allow for multiple user entries
 
 ### Technical Highlights  
-- Makes use of state management Redux store for state sharing between components  
+- Makes use of state management tools  
 - Custom Hooks used for forms and http requests
-- Makes use of Express on NodeJs for fast framework for network app development
-- makes use of Mongoose for object modeling on MongoDB
-- used MongoDB Atlas hosted service for ease of accessibility and deployment
-
+-  
 
 ## Application data
 ![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/Application%20data.png?raw=true)
@@ -35,6 +32,9 @@ FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered 
 
 
 ## Screenshot of Application  
+![Login](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/login.png)
+
+![Signup](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/signup.png)
 ![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/view%20items%20in%20foodgroup.png?raw=true)
 ![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/item%20details.png?raw=true)
 ![enter image description here](https://github.com/aunyamukherjee/friendly-fridge/blob/master/wireframes/error_no_food.png?raw=true)
