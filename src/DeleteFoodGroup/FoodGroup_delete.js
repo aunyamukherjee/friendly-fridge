@@ -33,10 +33,6 @@ const FoodGroup_delete = props => {
         await sendRequest(
           `http://localhost:5000/api/foodgroups/${foodgroupid}`,
           'DELETE'
-          // { 
-          //   // 'Content-Type': 'application/json' , 
-          //    Authorization: 'Bearer '+ auth.token 
-          // }
           );
 
       history.push(`/`);

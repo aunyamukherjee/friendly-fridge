@@ -29,8 +29,8 @@ const signup = async (req, res, next) => {
     );
   }
   const { name, email, password } = req.body;
-  console.log(req.body);
-  console.log(name, email, password);
+  console.log('req.body='+ req.body);
+  console.log('name, email, password='+ name + ''+ email + ''+ password);
   let existingUser;
   try {
     existingUser = await User.findOne( { email: email } );
@@ -53,6 +53,7 @@ const signup = async (req, res, next) => {
     let hashedPassword;
     try {
       hashedPassword  = await bcrypt.hash(password, 12);
+      console.log('hashedPassword='+ hashedPassword);
     } catch (err) {
       const error = new HttpError (
         'Could not create user, please try again.',

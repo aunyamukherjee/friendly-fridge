@@ -18,7 +18,7 @@
   .form-control input,
   .form-control select
   .form-control textarea {
-    width: 100%;
+    width: 95%;
     font: inherit;
     border: 1px solid #ccc;
     background: #f8f8f8;

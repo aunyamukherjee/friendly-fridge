@@ -4,6 +4,7 @@ import Input from '../shared/FormElements/Input';
 import Button from '../shared/FormElements/Button';
 import ErrorModal from '../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
+import loginImg from "./logo.png";
 
 import { 
     VALIDATOR_EMAIL, 
@@ -85,14 +86,21 @@ const Auth = () => {
       } else {
         try {
           const formData = new FormData();
-          formData.append('email', formState.inputs.email.value);
           formData.append('name', formState.inputs.name.value);
+          formData.append('email', formState.inputs.email.value);
           formData.append('password', formState.inputs.password.value);
-          formData.append('image', formState.inputs.image.value);
+//          formData.append('image', formState.inputs.image.value);
           const responseData = await sendRequest(
             'http://localhost:5000/api/users/signup',
             'POST',
-            formData
+            JSON.stringify({
+              name: formState.inputs.name.value,
+              email: formState.inputs.email.value,
+              password: formState.inputs.password.value
+            }),
+            {
+              'Content-Type': 'application/json'
+            }
           );
   
           auth.login(responseData.userId, responseData.token);
@@ -106,51 +114,68 @@ const Auth = () => {
     return (
       <React.Fragment>
         <ErrorModal error={error} onClear={clearError} />
-        <Card className="authentication">
-          {isLoading && <LoadingSpinner asOverlay />}
-          <h3>Login Required</h3>
-          <hr />
+        {/* {isLoading && <LoadingSpinner asOverlay />}  */}
+        <div className="base-container" > 
+          <div className="header"></div>
+          <div className="content">
+            <div className="image">
+              <img src={loginImg} />
+            </div>
           <form onSubmit={authSubmitHandler}>
-            {!isLoginMode && (
-              <Input 
-                element="input"
-                id="name"
-                type="text"
-                label="Your Name"
-                validators={[VALIDATOR_REQUIRE()]}
-                errorText="Please enter a name."
-                onInput={inputHandler}
-              />
-            )}
-            <Input 
-              element="input"
-              id="email"
-              type="email"
-              label="E-Mail"
-              validators={[VALIDATOR_EMAIL()]}
-              errorText="Please enter a valid email address."
-              onInput={inputHandler}
-            />
-            <Input 
-              element="input"
-              id="password"
-              type="password"
-              label="Password"
-              validators={[VALIDATOR_MINLENGTH(5)]}
-              errorText="Please enter a valid password, at least 5 characters."
-              onInput={inputHandler}
-            />
-            <Button type="submit" disabled={!formState.isValid}>
-              {isLoginMode ? 'LOGIN' : 'SIGNUP'}
-            </Button>
+            <div className="form">
+              {!isLoginMode && ( 
+                  <div className="form-group">
+                  <label htmlFor="username"></label>
+                    <Input 
+                      element="input"
+                      id="name"
+                      type="text"
+                      label="Name"
+                      validators={[VALIDATOR_REQUIRE()]}
+                      errorText="Please enter a name."
+                      onInput={inputHandler}
+                    />
+                  </div> //formgroup
+              )}
+                  <div className="form-group">
+                  <label htmlFor="email"></label>
+                    <Input 
+                    element="input"
+                    id="email"
+                    type="email"
+                    label="email"
+                    validators={[VALIDATOR_EMAIL()]}
+                    errorText="Please enter a valid email address."
+                    onInput={inputHandler}
+                    />
+                  </div>  
+                  <div className="form-group">
+                  <label htmlFor="password"></label>
+                    <Input 
+                    element="input"
+                    id="password"
+                    type="password"
+                    label="password"
+                    validators={[VALIDATOR_MINLENGTH(5)]}
+                    errorText="Please enter a valid password, at least 5 characters."
+                    onInput={inputHandler}
+                    />
+                  </div>  
+
+                  <div className="footer">
+                    <Button  className="btn" disabled={!formState.isValid}>
+                      {isLoginMode ? 'LOGIN' : 'SIGNUP'}
+                    </Button>
+                    <Button type="button" inverse onClick={switchModeHandler}>
+                      SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+                    </Button>
+                  </div> 
+            </div>
           </form>
-          <Button inverse onClick={switchModeHandler}>
-            SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
-          </Button>
-        </Card>
+      </div>
+      </div>
       </React.Fragment>
     );
   };
   
   export default Auth;
-  
