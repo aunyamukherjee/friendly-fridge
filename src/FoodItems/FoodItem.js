@@ -84,12 +84,12 @@ const FoodItem = props => {
             </div>
             <div className="food-item__actions">
               {/* {auth.isLoggedIn && ( */}
-                <Button to={`/foodedit/${identifiedFood.id}`}>EDIT</Button>
+                <Button to={`/foodedit/${identifiedFood.id}`}>Edit</Button>
               {/* )} */}
   
               {/* {auth.isLoggedIn && ( */}
                 <Button danger onClick={showDeleteWarningHandler}>
-                  DELETE
+                  Delete
                 </Button>
               {/* )} */}
             </div>

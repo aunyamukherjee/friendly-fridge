@@ -2,6 +2,12 @@
     list-style: none;
     margin: 1rem auto;
     padding: 0;
-    width: 90%;
-    max-width: 40rem;
+    width: 70%;
+    max-width: 140rem;
+    /* display: grid;
+    grid-template-columns: 600px 600px;
+    grid-gap: 0px; */
+    display: inline-block;
+    flex-direction: column;
+
 }

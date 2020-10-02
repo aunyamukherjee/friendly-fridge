@@ -20,6 +20,7 @@
     margin: 1rem;
     width: calc(45% - 2rem);
     min-width: 17.5rem;
+
   }
   
   .foodgroup-item a {
@@ -31,6 +32,7 @@
     padding: 1rem;
     color: white;
     background: #292929;
+
   }
   
   .foodgroup-item a:hover,
@@ -48,6 +50,7 @@
     margin: 0 0 0.5rem 0;
     font-weight: normal;
     color: rgb(88, 198, 206);;
+
   }
   
   .foodgroup-item:hover h2,

@@ -45,8 +45,8 @@ const HomePageBody = (props) => {
               <ListofFoodGroups items={loadedFoodgroups} />}
         </div>
         <div className="Login-Card">
-        <Button danger to="/foodgroup/delete">DELETE FOODGROUP</Button>
-        <Button to="/foodgroup/new">ADD NEW FOODGROUP</Button> 
+        <Button danger to="/foodgroup/delete">Delete Foodgroup</Button>
+        <Button to="/foodgroup/new">Add Foodgroup</Button> 
         </div>
         </React.Fragment> )}
         {!auth.isLoggedIn && (

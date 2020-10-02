@@ -61,7 +61,7 @@ const NewFoodGroup = () => {
         />
         
         <Button type="submit" disabled={!formState.isValid} >
-        ADD FOODGROUP
+       Add Foodgroup
         </Button>
       </form>
       </React.Fragment>

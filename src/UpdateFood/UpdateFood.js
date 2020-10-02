@@ -181,7 +181,7 @@ const UpdateFood = () => {
          initialValue={loadedFood.qty}
          initialValid={true}/> 
         <Button type="submit" disabled={!formState.isValid}>
-          UPDATE ITEM
+          Update
         </Button>
 
 

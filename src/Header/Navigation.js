@@ -38,6 +38,7 @@ const Navigation = props => {
                 {/* {auth.isLoggedIn && (  */}
                     <h1 className ="Nav-Title">
                         <Link to ="/">FriendlyFridge</Link>
+
                     </h1>
                 {/* )}  */}
             <nav className ="Header-Nav">
