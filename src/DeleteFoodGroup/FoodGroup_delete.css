@@ -60,3 +60,17 @@
   .foodgroup-item__info h3 {
     margin: 0;
   }
+
+  .btn {
+    background-color: grey;
+    font-size: 20px;
+    transition-duration: 0.4s;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+  }
+
+  .btn:hover {
+    background-color: teal; /* Green */
+    color: white;
+  }

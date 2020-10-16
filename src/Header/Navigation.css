@@ -43,3 +43,18 @@
       display: block;
     }
   }
+
+  .centered-images {
+    text-align: center;
+}
+
+.title {
+  display: inline-block;
+  size: 10px;
+  color: black;
+}
+.title2 {
+  display: inline-block;
+  size: 10px;
+  color: lightgray;
+}

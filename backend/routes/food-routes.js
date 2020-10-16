@@ -14,7 +14,7 @@ router.get('/:fid', foodControllers.getFoodById);
 
 router.get('/foodgroup/:fgid', foodControllers.getFoodsByFoodGroupId);
 
-
+router.use(checkAuth);
 
 router.post(
   '/',
@@ -44,6 +44,6 @@ router.patch(
 
 router.delete('/:fid', foodControllers.deleteFood);
 
-router.use(checkAuth);
+// router.use(checkAuth);
 
 module.exports = router;

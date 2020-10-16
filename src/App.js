@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import Navigation from './Header/Navigation';
@@ -16,39 +16,12 @@ import UpdateFood from './UpdateFood/UpdateFood';
 import DeleteFoodGroup from './DeleteFoodGroup/DeleteFoodGroup';
 
 import { AuthContext } from './shared/context/auth-context';
+// import dateRange from 'material-ui/svg-icons/action/date-range';
+import { useAuth } from './shared/hooks/auth-hook';
 
 
 const App = (props) => {
-
-  // since i got rid of the state portion in this code
-  // I could change this back to a function (did it)
-  const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false);
-
-
-
-  const login = useCallback((uid, token) => {
-    setToken(token);
-    localStorage.setItem(
-      'userDate', 
-      JSON.stringify({userid: uid, token: token})
-    );
-    setUserId(uid);
-  }, []);
-
-  const logout = useCallback(() => {
-    setToken(null);
-    setUserId(null);
-  }, []);
-
-  useEffect(()=> {
-    const storedData = JSON.parse(localStorage.getItem('userData'));
-    console.log('Inside useEffect: storeData='+storedData);
-    if (storedData && storedData.token) {
-      login(storedData.userId, storedData.token);
-    }
-
-  }, [login]);
+  const { token, login, logout, userId } = useAuth();
 
   let routes;
 

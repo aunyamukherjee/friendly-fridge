@@ -8,9 +8,11 @@ const router = express.Router();
 
 router.get('/', foodgroupControllers.getAllFoodgroups);
 
+router.use(checkAuth);
+
 router.post('/', foodgroupControllers.createFoodgroup);
 
 router.delete('/:fgid', foodgroupControllers.deleteFoodgroup);
 
-router.use(checkAuth);
+
 module.exports = router;

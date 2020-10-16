@@ -73,7 +73,7 @@ const FoodItem = props => {
           cannot be reversed.
           </p>
         </Modal>
-        <div className="food-item">
+        <div className="center">
           <Card className="food-item__content">
             {isLoading && <LoadingSpinner asOverlay />}
             <div className="food-item__info">

@@ -1,13 +1,27 @@
 
+.center {
+  margin: auto;
+  width: 50%;
+  padding-top: 25px;
+}
+
 .food-item {
     margin: 2rem 2rem;
     padding:10px 5px 5px 10px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 
 
   }
   
   .food-item__content {
     padding:10px 5px 5px 10px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+
 
 
   }
@@ -17,6 +31,9 @@
     text-align: center;
     text-shadow:gray;
     color: black;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
 
   }
   

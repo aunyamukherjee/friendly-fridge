@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Input from '../shared/FormElements/Input.js';
@@ -8,6 +8,7 @@ import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 
 import { useForm } from '../shared/hooks/form-hook';
 import { useHttpClient } from '../shared/hooks/http-hook';
+import { AuthContext } from '../shared/context/auth-context';
 import { 
     VALIDATOR_REQUIRE, 
   } from '../shared/util/validators';
@@ -15,6 +16,7 @@ import '../NewItem/FoodForm.css';
 
 const NewFoodGroup = () => {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const auth = useContext(AuthContext);
     
     const [formState, inputHandler] = useForm(
       {
@@ -36,7 +38,12 @@ const NewFoodGroup = () => {
           JSON.stringify({
             name: formState.inputs.name.value
           }),
-          { 'Content-Type': 'application/json'}
+          {
+            'Content-type': 'application/json',
+            Authorization: 'Bearer '+ auth.token
+            // "Access-Control-Allow-Origin": "*"
+        }
+          
         );
 
         history.push('/');

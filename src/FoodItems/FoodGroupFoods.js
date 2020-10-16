@@ -6,6 +6,8 @@ import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 import Button from '../shared/FormElements/Button';
 import Card from '../shared/UIElements/Card';
 
+import '../shared/UIElements/Card.css';
+
 import FoodsList from './FoodsList';
 
 const FoodGroupFoods = props => {
@@ -40,9 +42,10 @@ const FoodGroupFoods = props => {
       
       <FoodsList items={loadedFoodGroupFoods} onDeleteFood={foodDeletedHandler} />}
       {loadedFoodGroupFoods.length ===0 && (
-        <Card>
-          <h3>Looks like this foodgroup is empty! Want to add something?</h3>
+        <Card className="card__content">
+          <h3>Empty Foodgroup! Want to add something?</h3>
           <Button to="/food/new">Add Food</Button>
+          <h3></h3>
         </Card>
       )
       }

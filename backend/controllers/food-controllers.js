@@ -67,16 +67,22 @@ const createFood = async (req, res, next) => {
       foodgroupid
   });
   let foodgroup;
-  try {
+  // try {
       //Search foodgroupid by foodgroupname from Mongo first
+      // foodgroup = await Foodgroup.findById(foodgroupid);
       foodgroup = await Foodgroup.findById(foodgroupid);
-  } catch (err) {
-      const error = new HttpError(
-          'Creating food failed.  Please try again',
-          500
-      );
-      return next(error);
-  }
+      console.log('foodgroup:'+foodgroup);
+      console.log('foodgroupid:'+foodgroupid);
+  // } catch (err) {
+
+
+  //     const error = new HttpError(
+  //         'Creating food failed.  Please try again',
+  //         500
+  //     );
+  //     console.log('err was'+error);
+  //     return next(error);
+  // }
   if (!foodgroup) {
       const error = new HttpError(
           'Could not find foodgroup for the provided id',
@@ -89,7 +95,9 @@ const createFood = async (req, res, next) => {
 try {
   const sess = await mongoose.startSession();
   sess.startTransaction();
-  await createdFood.save({ session: sess });
+  console.log('Session Started');
+  // await createdFood.save({ session: sess });
+  createdFood.save({ session: sess });
   foodgroup.foods.push(createdFood);
   await foodgroup.save({ session: sess });
   await sess.commitTransaction();

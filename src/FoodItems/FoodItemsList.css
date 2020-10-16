@@ -1,23 +1,36 @@
 
+
+.center {
+  /* margin: auto; */
+  width:50%;
+  padding-top: 25px;
+}
 .food-item {
     margin: 1rem 0;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 
   }
   
   .food-item__content {
-    padding: 0;
+    /* padding: 0; */
     width: 50%;
     background-color: #020e21;
-
+    align-content: center;
+    text-align: center;
+    justify-content: center;
 
   }
   
   .food-item__info {
-    padding: 1rem;
+    /* padding: 1rem; */
     text-align: center;
     text-shadow:gray;
     color: teal;
-
+    align-content: center;
+    text-align: center;
   }
   
   .food-item__info h2,
@@ -27,18 +40,24 @@
   }
   
   .food-item__actions {
-    padding: 1rem;
+    /* padding: 1rem; */
     text-align: center;
     border-top: 1px solid #ccc;
   }
   
   .food-item__modal-content {
-    padding: 0;
+    /* padding: 0; */
+    align-content: center;
+    text-align: center;
+    justify-content: center;
 
   }
   
   .food-item__modal-actions {
     text-align: right;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
   }
   
   .food-item__actions button,

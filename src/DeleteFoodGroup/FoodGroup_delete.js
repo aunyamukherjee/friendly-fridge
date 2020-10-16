@@ -1,4 +1,11 @@
 import React, {useEffect, useState, useContext } from 'react';
+import ReactDOM from 'react-dom'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
+import {FaTrashAlt} from "react-icons/fa";
+
 import { Link } from 'react-router-dom';
 import Card from '../shared/UIElements/Card';
 import './FoodGroup_delete.css';
@@ -10,6 +17,7 @@ import ErrorModal from '../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 import { AuthContext } from '../shared/context/auth-context';
 
+library.add(faTrash, faSignOutAlt);
 
 const FoodGroup_delete = props => {
 
@@ -32,7 +40,12 @@ const FoodGroup_delete = props => {
       try{
         await sendRequest(
           `http://localhost:5000/api/foodgroups/${foodgroupid}`,
-          'DELETE'
+          'DELETE',
+          null,
+          {
+            'Content-type': 'application/json',
+            Authorization: 'Bearer '+ auth.token
+        }
           );
 
       history.push(`/`);
@@ -82,10 +95,12 @@ const FoodGroup_delete = props => {
             {isLoading && <LoadingSpinner asOverlay />}
                     <div className="foodgroup-item__info">
                         <h2 >
-                             {/* onClick={onClickHandler}> */}
-                                <Button danger onClick= {showDeleteWarningHandler}>
-                                    DELETE {props.name}
-                                </Button> 
+                          <Card>
+                                <FaTrashAlt />
+                                <button className="btn" onClick= {showDeleteWarningHandler}>
+                                     {props.name}
+                                </button>  
+                          </Card>
                         </h2>
                     </div>
                 {/* </Link> */}
