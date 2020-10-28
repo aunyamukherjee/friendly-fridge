@@ -9,8 +9,9 @@ const Foodgroup = require('../models/foodgroup');
 
 const getAllFoodgroups = async (req, res, next) => {
     let foodgroup;
+     console.log("************req.userData.userId="+ JSON.stringify(req.userData.userId));
     try {
-        foodgroup = await Foodgroup.find({});
+        foodgroup = await Foodgroup.find({creator: req.userData.userId});        
     } catch (err) {
         const error = new HttpError (
             'Could not find any food groups', 500
@@ -19,9 +20,7 @@ const getAllFoodgroups = async (req, res, next) => {
     }
     if (foodgroup.length > 0) {
         res.type('application/json');
-        //res.send(foodgroup);
         res.json(foodgroup);
-        console.log("foodgroup returned=" + foodgroup);
     } else {
         const error = new HttpError (
             'Could not find any food groups.', 404
@@ -34,8 +33,11 @@ const getAllFoodgroups = async (req, res, next) => {
 
 const createFoodgroup = async (req, res, next) => {
     const {name } = req.body;
+    console.log("creator="+ req.userData.userId);
+    const creator = req.userData.userId;
     const createdFoodgroup =  new Foodgroup({
         name,
+        creator,
         foods: []
     });
 
@@ -55,9 +57,7 @@ const createFoodgroup = async (req, res, next) => {
     const foodgroupId = req.params.fgid;
     console.log('foodgroupid='+foodgroupId);
     let foodgroup;
-    // try {
         console.log('foodgroupId='+foodgroupId);
-        // foodgroup = await Foodgroup.findByIdAndDelete(foodgroupId);
         foodgroup = await Foodgroup.findById(foodgroupId);
         Foodgroup.findByIdAndDelete(foodgroupId, function (err, docs) {
             if (err) {
@@ -67,15 +67,7 @@ const createFoodgroup = async (req, res, next) => {
                 console.log("Result: "+docs);
             }
         });
-    //   foodgroup = await Foodgroup.findById(foodgroupId);
-    //   console.log('foodgroup object='+JSON.stringify(foodgroup));
-    // } catch (err) {
-    //   const error = new HttpError(
-    //     'Something went wrong, could not delete foodgroup.',
-    //     500
-    //   );
-    //   return next(error);
-    // }
+
   console.log("foodgroup="+foodgroup);
     if (!foodgroup) {
       const error = new HttpError('Could not find foodgroup for this id.', 404);
@@ -83,17 +75,9 @@ const createFoodgroup = async (req, res, next) => {
     }
   
   try {
-    //   console.log('Creating Sess');
-    //   const sess = await mongoose.startSession();
-    //   console.log('Sess Created');
-    //   sess.startTransaction();
-    //   console.log('Trans started');
+
       await foodgroup.remove();
       console.log('Foodgroup removed');
-    //   await foodgroup.save();
-    //   console.log('foodgroup saved');
-    //   await sess.commitTransaction();
-    //   console.log('Committing Trans');
     } catch (err) {
       const error = new HttpError(
         'Something went wrong here, could not delete foodgroup.',

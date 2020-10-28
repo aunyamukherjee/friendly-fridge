@@ -41,7 +41,6 @@ const NewFoodGroup = () => {
           {
             'Content-type': 'application/json',
             Authorization: 'Bearer '+ auth.token
-            // "Access-Control-Allow-Origin": "*"
         }
           
         );

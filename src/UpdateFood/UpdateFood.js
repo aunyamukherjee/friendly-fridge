@@ -12,12 +12,14 @@ import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 import ErrorModal from '../shared/UIElements/ErrorModal';
 
 import '../NewItem/FoodForm.css';
+const axios = require('axios');
 
 
 const UpdateFood = () => {
     const auth = useContext(AuthContext);
     const {isLoading, error, sendRequest, clearError  } = useHttpClient();
     const [loadedFood, setLoadedFood ] = useState();
+
 
     const foodid = useParams().foodid;
     const history = useHistory();
@@ -45,69 +47,50 @@ const UpdateFood = () => {
     useEffect(() => {
         const fetchFood = async () => {
         try { 
-         const responseData = await sendRequest(`http://localhost:5000/api/food/${foodid}`);
-         setLoadedFood(responseData.food);
-         setFormData(
-            {
-                name: {
-                    value: responseData.food.name,
-                    isValid: true
-                },
-                details: {
-                    value: responseData.food.details,
-                    isValid: true
-                },
-                expirydate: {
-                    value: responseData.food.expirydate,
-                    isValid: true
-                },
-                qty: {
-                    value: responseData.food.qty,
-                    isValid: true
-                },
-            },
-            true
-          );
-        } catch (err) {}
-        };
-        fetchFood();
-    }, [sendRequest, foodid, setFormData]);
-
+                const fid = `${foodid}`;
+                console.log("Starting axios call for fetchFood");
+                const responseData = 
+                await axios.get('http://localhost:5000/api/food/'+`${foodid}`,
+                    { headers: {
+                    'Content-Type': 'application/json' , 
+                    Authorization: 'Bearer '+ auth.token 
+                    }}
+                );
+                console.log("responseData="+ JSON.stringify(responseData.data.food));
+                setLoadedFood(responseData.data.food);
+                console.log("setLoadedFood finished");
+            } catch (err) {console.log("Error in axios");}
+   };
+   fetchFood();
+   }, [auth.token, foodid, setFormData]);
 
     const foodUpdateSubmitHandler = async event => {
         event.preventDefault();
         try {
-            console.log('UpdateFood: foodUpdateSubmitHandler:token='+auth.token);
-            console.log('UpdateFood: foodUpdateSubmitHandler:name='+formState.inputs.name.value);
-            console.log('UpdateFood: foodUpdateSubmitHandler:details='+formState.inputs.name.details);
-            console.log('UpdateFood: foodUpdateSubmitHandler:expirydate='+formState.inputs.name.expirydate);
-            console.log('UpdateFood: foodUpdateSubmitHandler:qty='+formState.inputs.name.qty);
-            const formData = new FormData();
-            formData.append('name', formState.inputs.name.value);
-            formData.append('details', formState.inputs.details.value);
-            formData.append('expirydate', formState.inputs.expirydate.value);
-            formData.append('qty', formState.inputs.qty.value);
-            await sendRequest(
-            `http://localhost:5000/api/food/${foodid}`, 
-            'PATCH',
-            JSON.stringify({
-                name: formState.inputs.name.value,
-                details: formState.inputs.details.value,
-                expirydate: formState.inputs.expirydate.value,
-                qty: formState.inputs.qty.value,
-            }),
-            // formData, 
-            {
-                    'Content-type': 'application/json',
-                    Authorization: 'Bearer '+ auth.token
-                    // "Access-Control-Allow-Origin": "*"
-                }
 
-            )
+                 const fid = `${foodid}`;
+                 console.log("Starting axios call for foodUpdateSubmitHandler ");
+                 const responseData = 
+                   await axios.patch('http://localhost:5000/api/food/'+`${foodid}`,
+                   JSON.stringify({
+                            name: formState.inputs.name.value,
+                            details: formState.inputs.details.value,
+                            expirydate: formState.inputs.expirydate.value,
+                            qty: formState.inputs.qty.value,
+                        }),
+                     { headers: {
+                     'Content-Type': 'application/json' , 
+                     Authorization: 'Bearer '+ auth.token 
+                     }}
+                   );
+                   console.log("responseData="+ JSON.stringify(responseData.data.food));
+                   setLoadedFood(responseData.data.food);
+                 console.log("setLoadedFood finished");
+             } catch (err) {console.log("Error in axios");}
             history.push('/foods/'+foodid);
-        } catch (err) {}
+           };
 
-        };
+        
     
     if (isLoading) {
         return (

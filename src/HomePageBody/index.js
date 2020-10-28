@@ -12,6 +12,7 @@ import Card from "../shared/UIElements/Card";
 import './HomePageBody.css';
 
 
+const axios = require('axios');
 
 const HomePageBody = (props) => {
     const {isLoading, error, sendRequest, clearError} = useHttpClient();
@@ -20,14 +21,23 @@ const HomePageBody = (props) => {
 
         useEffect(() => {
       
-        const fetchFoodgroups = async () => {
-          try {
-              const responseData = await sendRequest('http://localhost:5000/api/foodgroups')
-              setLoadedFoodgroups(responseData);
-          } catch (err) {}
-        };
-        fetchFoodgroups();
-      }, [sendRequest]);
+          const fetchFoodgroups = async () => {
+            try {
+                console.log("Starting axios call for foodgroups");
+                const responseData = 
+                  await axios.get('http://localhost:5000/api/foodgroups',
+                    { headers: {
+                     'Content-Type': 'application/json' , 
+                     Authorization: 'Bearer '+ auth.token 
+                    }}
+                  );
+                  console.log("responseData="+ responseData.data);
+                setLoadedFoodgroups(responseData.data);
+                console.log("set Loaded Food Groups finished");
+            } catch (err) {console.log("Error in axios");}
+          };
+          fetchFoodgroups();
+      }, [auth.token]);
 
 
     return (

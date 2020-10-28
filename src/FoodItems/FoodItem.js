@@ -6,15 +6,20 @@ import Button from '../shared/FormElements/Button';
 import Modal from '../shared/UIElements/Modal';
 import ErrorModal from '../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
-
+import { AuthContext } from '../shared/context/auth-context';
+import { useContext } from 'react';
 
 import "./FoodItem.css";
+const axios = require('axios');
 
 const FoodItem = props => {
   const history = useHistory();
    const {isLoading, error, sendRequest, clearError} = useHttpClient();
   
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const auth = useContext(AuthContext);
+    const [identifiedFood, setIdentifiedFood ] = useState([]);
+    const foodid = useParams().foodid;
 
     const showDeleteWarningHandler = () => {
       setShowConfirmModal(true);
@@ -27,27 +32,41 @@ const FoodItem = props => {
     const confirmDeleteHandler = async () => {
       setShowConfirmModal(false);
       try{
-        await sendRequest(
-          `http://localhost:5000/api/food/${foodid}`,
-          'DELETE'
-          );
-      history.push(`/${identifiedFood.foodgroupid}/food`);
-      props.onDelete(props.id);
-      } catch (err) {} 
-    };
-    const [identifiedFood, setIdentifiedFood ] = useState([]);
-    const foodid = useParams().foodid;
+            const fid = `${foodid}`;
+            console.log("Starting axios call for confirmDeleteHandler ");
+            const responseData = 
+              await axios.delete('http://localhost:5000/api/food/'+`${foodid}`,
+                { headers: {
+                'Content-Type': 'application/json' , 
+                Authorization: 'Bearer '+ auth.token 
+                }}
+              );
+              console.log("responseData="+ JSON.stringify(responseData));
+        } catch (err) {console.log("Error in axios");}
+              history.push(`/${identifiedFood.foodgroupid}/food`);
+              // props.onDelete(props.id);
+        };
 
     useEffect(() => {
       
       const fetchIdentifiedFood = async () => {
         try {
-            const responseData = await sendRequest(`http://localhost:5000/api/food/${foodid}`);
-            setIdentifiedFood(responseData.food);
-        } catch (err) {}
-      };
-      fetchIdentifiedFood();
-    }, [sendRequest, foodid]);
+              const fid = `${foodid}`;
+              console.log("Starting axios call for fetchIdentifiedFood");
+              const responseData = 
+                await axios.get('http://localhost:5000/api/food/'+`${foodid}`,
+                  { headers: {
+                  'Content-Type': 'application/json' , 
+                  Authorization: 'Bearer '+ auth.token 
+                  }}
+                );
+                console.log("responseData="+ JSON.stringify(responseData.data.food));
+                setIdentifiedFood(responseData.data.food);
+              console.log("setIdentifiedFood finished");
+          } catch (err) {console.log("Error in axios");}
+          };
+          fetchIdentifiedFood();
+          }, [auth.token, foodid]);
 
     return (
         <React.Fragment>

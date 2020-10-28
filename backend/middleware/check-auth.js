@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const HttpError = require('../models/http-error');
 
 module.exports = (req, res, next) => {
-    if (req.method === 'OPTIONS') {
+    if (req.method === 'OPTIONS' || 'GET') {
     //     return next();
     // }
     try {
@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
         if (!token) {
             throw new Error('Authentication failed!');
         }
-        const decodedToken = jwt.verify(token, 'supersecret_dontshare');
+        const decodedToken = jwt.verify(token, process.env.JWT_KEY);
         req.userData = {userId: decodedToken.userId};
         console.log('decodedToken.userId='+decodedToken.userId);
         next();
@@ -20,6 +20,7 @@ module.exports = (req, res, next) => {
         return next(error);
     }
     }
-    return next();
+    // return next();
+    return;
 
 };

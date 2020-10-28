@@ -81,7 +81,6 @@ import Auth from '../Auth/index.js';
           JSON.stringify({
             name: formState.inputs.name.value,
             details: formState.inputs.details.value,
-            // expirydate: formState.inputs.expirydate.value,
             expirydate: expiryDate,
             qty: formState.inputs.qty.value,
             foodgroupid: foodgroupid
@@ -134,15 +133,6 @@ import Auth from '../Auth/index.js';
          onSelect={inputHandler}
          />   
 
-        {/* <Input
-         id= "expirydate"
-         element="input"
-         type="text"
-         label="Expiration Date"
-         validators={[VALIDATOR_MINLENGTH(7)]}
-         errorText="Please enter (mm/dd/yy)"
-         onInput={inputHandler} />  */}
-
          <Input
          id ="qty"
          element="input" 
@@ -157,16 +147,11 @@ import Auth from '../Auth/index.js';
           element="select"
           label="Foodgroup"
           errorText="Please enter a foodgroup"
-          // onInput={inputHandler}
           onTouch={inputHandler}/>
 
         <Button type="submit" disabled={formState.isValid} >
         ADD ITEM
         </Button>
-
-        {/* <Button type="submit"  >
-        ADD ITEM
-        </Button> */}
 
       </form>
       </React.Fragment>

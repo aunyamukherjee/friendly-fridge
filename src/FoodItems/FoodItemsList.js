@@ -5,8 +5,7 @@ import Button from '../shared/FormElements/Button';
 
 
 const FoodItemsList = props => {
-    //const auth = useContext(AuthContext);
-  
+    console.log("props.id"+ props.id);
     return (
       <div className="center">
         <li className="food-item">

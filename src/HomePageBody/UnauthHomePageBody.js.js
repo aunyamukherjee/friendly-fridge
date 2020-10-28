@@ -9,21 +9,7 @@ import './HomePageBody.css';
 
 
 const UnauthHomePageBody = (props) => {
-    // const {isLoading, error, sendRequest, clearError} = useHttpClient();
-    // const [loadedFoodgroups, setLoadedFoodgroups ] = useState([]);
-
-    //     useEffect(() => {
-      
-    //     const fetchFoodgroups = async () => {
-    //       try {
-    //           const responseData = await sendRequest('http://localhost:5000/api/foodgroups')
-    //           setLoadedFoodgroups(responseData);
-    //       } catch (err) {}
-    //     };
-    //     fetchFoodgroups();
-    //   }, [sendRequest]);
-
-
+ 
     return (
       <React.Fragment>
         {(

@@ -39,7 +39,7 @@ const FoodGroup_delete = props => {
       setShowConfirmModal(false);
       try{
         await sendRequest(
-          `http://localhost:5000/api/foodgroups/${foodgroupid}`,
+          'http://localhost:5000/api/foodgroups/'+`${foodgroupid}`,
           'DELETE',
           null,
           {
@@ -55,16 +55,6 @@ const FoodGroup_delete = props => {
     //const [identifiedFood, setIdentifiedFood ] = useState([]);
     const foodgroupid = props.id;
 
-    // useEffect(() => {
-      
-    //   const fetchIdentifiedFood = async () => {
-    //     try {
-    //         const responseData = await sendRequest(`http://localhost:5000/api/food/${foodid}`);
-    //         setIdentifiedFood(responseData.food);
-    //     } catch (err) {}
-    //   };
-    //   fetchIdentifiedFood();
-    // }, [sendRequest, foodid]);
     return (
         <React.Fragment>
           <ErrorModal error={error} onClear={clearError} />

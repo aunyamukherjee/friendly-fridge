@@ -1,12 +1,12 @@
 import React, {  useEffect, useState } from 'react';
 import { useHttpClient } from '../hooks/http-hook';
-import { validate } from '../util/validators';
 import { useDispatch } from 'react-redux';
-
+import { AuthContext } from '../context/auth-context';
+import { useContext } from 'react';
 
 import './Input.css';
 
-
+const axios = require('axios');
 
 const inputReducer = (state, action) => {
    switch (action.type) {
@@ -39,20 +39,29 @@ const dispatch = useDispatch();
 
   const {isLoading, error, sendRequest, clearError} = useHttpClient();
   const [loadedFoodgroups, setLoadedFoodgroups ] = useState([]);
+  const auth = useContext(AuthContext);
 
 
 useEffect(() => {
 
     const fetchFoodgroups = async () => {
-      try {
-          const responseData = await sendRequest('http://localhost:5000/api/foodgroups')
-          setLoadedFoodgroups(responseData);
-         //console.log('ResponseData'+ JSON.stringify(responseData));
+  try {
+    console.log("Starting axios call for foodgroups");
+    const responseData = 
+      await axios.get('http://localhost:5000/api/foodgroups',
+        { headers: {
+         'Content-Type': 'application/json' , 
+         Authorization: 'Bearer '+ auth.token 
+        }}
+      );
+      console.log("responseData="+ responseData.data);
+    setLoadedFoodgroups(responseData.data);
+    console.log("set Loaded Food Groups finished");
+} catch (err) {console.log("Error in axios");}
+};
+fetchFoodgroups();
+}, [auth.token]);
 
-        } catch (err) {}
-    };
-    fetchFoodgroups();
-  }, [sendRequest]);
 
   const changeHandler = (eventKey: React.SyntheticEvent<EventTarget>, event) => {
     setSelValue(eventKey.target.value);

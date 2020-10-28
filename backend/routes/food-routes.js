@@ -8,13 +8,14 @@ const router = express.Router();
 
 const foodControllers = require('../controllers/food-controllers');
 
-
+router.use(checkAuth);
 
 router.get('/:fid', foodControllers.getFoodById);
 
+
 router.get('/foodgroup/:fgid', foodControllers.getFoodsByFoodGroupId);
 
-router.use(checkAuth);
+
 
 router.post(
   '/',

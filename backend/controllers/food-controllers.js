@@ -11,7 +11,10 @@ const getFoodById = async (req,res, next) => {
     const foodId = req.params.fid;
     let food;
     try {
+    console.log("creator="+ req.userData.userId);
+    console.log("fooId="+foodId);
     food =await Food.findById(foodId);
+
     } catch (err) {
         const error = new HttpError (
             'Something went wrong, could not find a food', 500
@@ -26,15 +29,20 @@ const getFoodById = async (req,res, next) => {
 
         throw new HttpError('Could not find a food for the provided id.', 404);
     }
+    console.log("food="+food);
     res.json({ food: food.toObject( { getters: true })});
+    console.log("Returning food for foodid="+food);
 };
 
 const getFoodsByFoodGroupId = async (req, res, next)=> {
     const fgId = req.params.fgid;
-
     let foods;
     try {
-    foods = await Food.find({ foodgroupid: fgId} );
+    console.log("*********creator="+ req.userData.userId);
+    console.log("*********fgId="+fgId);
+    foods = await Food.find({ $and: [ {foodgroupid: fgId}, {creator: req.userData.userId}]} );
+    console.log("foods.length="+foods.length);
+    console.log(foods[0].name);
     } catch (err) {
         const error = new HttpError (
             'Fetching food failed.  Please try again later', 500
@@ -47,6 +55,7 @@ if (!foods || foods.length === 0) {
     }
 
     res.json({foods: foods.map(food => food.toObject({ getters: true })) });  
+    console.log("Returning foods for foodgroupid="+foods);
 }
 
 //New createFood by foodgroupname
@@ -58,67 +67,59 @@ const createFood = async (req, res, next) => {
   console.log('req.body.qty='+req.body.qty);
   console.log('req.body.foodgroupid='+req.body.foodgroupid);
 
+  console.log("creator="+ req.userData.userId);
+  try {
+  const creator = req.userData.userId;
   console.log("*******", name, details, expirydate, qty, foodgroupid);
   const createdFood =  new Food({
       name,
       details,
       expirydate,
       qty,
+      creator,
       foodgroupid
   });
-  let foodgroup;
-  // try {
-      //Search foodgroupid by foodgroupname from Mongo first
-      // foodgroup = await Foodgroup.findById(foodgroupid);
+
+      let foodgroup;
+      console.log("foodgroupid="+ foodgroupid);
+      console.log("req.userData.userId= "+ req.userData.userId);
       foodgroup = await Foodgroup.findById(foodgroupid);
       console.log('foodgroup:'+foodgroup);
       console.log('foodgroupid:'+foodgroupid);
-  // } catch (err) {
-
-
-  //     const error = new HttpError(
-  //         'Creating food failed.  Please try again',
-  //         500
-  //     );
-  //     console.log('err was'+error);
-  //     return next(error);
-  // }
-  if (!foodgroup) {
-      const error = new HttpError(
+      if (!foodgroup) {
+        const error = new HttpError(
           'Could not find foodgroup for the provided id',
           404
-      );
+        );
       return next(error);
-  }
-
-
-try {
+      }
   const sess = await mongoose.startSession();
   sess.startTransaction();
   console.log('Session Started');
-  // await createdFood.save({ session: sess });
-  createdFood.save({ session: sess });
+   createdFood.save({ session: sess });
+  console.log('Pushing food..');
+
   foodgroup.foods.push(createdFood);
+  foodgroup = await Foodgroup.findById(foodgroupid);
+  console.log(foodgroup);
+     foodgroup.foods.push(createdFood);
+     console.log(foodgroup);
+  console.log('Saving Session Started');
   await foodgroup.save({ session: sess });
+  console.log('Committing');
   await sess.commitTransaction();
 } catch (err) {
   const error = new HttpError(
     'Creating food failed, please try again.',
     500
+
   );
   return next(error);
 }
-//check for place?
-res.status(201).json({ place: createdFood });
+res.status(201).json({food: req.body.name}) ;
 };
 
 const updateFood = async (req, res, next) => {
-  // const errors = validationResult(req);
-  // if (!errors.isEmpty()) {
-  //   return next(
-  //     new HttpError('Invalid inputs passed, please check your data.', 422)
-  //   );
-  // }
 
   const {name, details, qty } = req.body;
   const foodId = req.params.fid;
@@ -130,9 +131,6 @@ const updateFood = async (req, res, next) => {
   console.log('req.body.details='+req.body.details);
   console.log('req.body.qty='+req.body.qty);
   console.log('req.params.fid='+req.params.fid);
-
-
-//  const {name, details, expirydate, qty, foodgroupid } = req.body;
   console.log("*******", name, details, qty, foodId);
 
   let food;
@@ -155,7 +153,6 @@ const updateFood = async (req, res, next) => {
         );
         return next(error);
       }
-//    res.status(200).json({food: food.toObject({ getters: true })});
     res.status(200).json({food: food});
 };
 

@@ -6,9 +6,10 @@ const foodgroupControllers = require('../controllers/foodgroup-controllers');
 
 const router = express.Router();
 
+router.use(checkAuth);
 router.get('/', foodgroupControllers.getAllFoodgroups);
 
-router.use(checkAuth);
+
 
 router.post('/', foodgroupControllers.createFoodgroup);
 

@@ -6,11 +6,10 @@ import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
 import { useHttpClient } from '../shared/hooks/http-hook';
 import { AuthContext } from '../shared/context/auth-context';
 import { useContext } from 'react';
-import Button from "../shared/FormElements/Button";
-import Card from "../shared/UIElements/Card";
+
 
 import './DeleteFoodGroup.css';
-
+const axios = require('axios');
 
 
 const DeleteFoodGroup = (props) => {
@@ -19,16 +18,23 @@ const DeleteFoodGroup = (props) => {
     const auth = useContext(AuthContext);
 
         useEffect(() => {
-      
-        const fetchFoodgroups = async () => {
-          try {
-              const responseData = await sendRequest('http://localhost:5000/api/foodgroups')
-              setLoadedFoodgroups(responseData);
-          } catch (err) {}
-        };
-        fetchFoodgroups();
-      }, [sendRequest]);
-
+      const fetchFoodgroups = async () => {
+        try {
+          console.log("Starting axios call for fetchfoodgroupfoods");
+          const responseData = 
+            await axios.get('http://localhost:5000/api/foodgroups',
+              { headers: {
+              'Content-Type': 'application/json' , 
+              Authorization: 'Bearer '+ auth.token 
+              }}
+            );
+            console.log("responseData="+ responseData.data);
+            setLoadedFoodgroups(responseData.data);
+          console.log("setLoadedFoodGroupFoods finished");
+      } catch (err) {console.log("Error in axios");}
+    };
+    fetchFoodgroups();
+    }, [auth.token]);
 
     return (
       <React.Fragment>
