@@ -1,4 +1,5 @@
 import React, { useEffect, useState }  from 'react';
+import dotenv from 'dotenv'
 
 import ListofFoodGroups from "./ListofFoodGroups";
 import ErrorModal from "../shared/UIElements/ErrorModal";
@@ -25,7 +26,8 @@ const HomePageBody = (props) => {
             try {
                 console.log("Starting axios call for foodgroups");
                 const responseData = 
-                  await axios.get('http://localhost:5000/api/foodgroups',
+                  // await axios.get('http://localhost:5000/api/foodgroups',
+                  await axios.get(process.env.REACT_APP_BACKEND_URL+'/foodgroups',
                     { headers: {
                      'Content-Type': 'application/json' , 
                      Authorization: 'Bearer '+ auth.token 

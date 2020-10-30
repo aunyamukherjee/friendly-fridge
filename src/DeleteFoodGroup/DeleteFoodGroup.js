@@ -22,7 +22,9 @@ const DeleteFoodGroup = (props) => {
         try {
           console.log("Starting axios call for fetchfoodgroupfoods");
           const responseData = 
-            await axios.get('http://localhost:5000/api/foodgroups',
+            // await axios.get('http://localhost:5000/api/foodgroups',
+            await axios.get(process.env.REACT_APP_BACKEND_URL+'/foodgroups',
+            
               { headers: {
               'Content-Type': 'application/json' , 
               Authorization: 'Bearer '+ auth.token 

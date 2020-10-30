@@ -17,10 +17,12 @@
   .food-item__content {
     /* padding: 0; */
     width: 50%;
-    background-color: #020e21;
+    /* background-color: #020e21; */
     align-content: center;
     text-align: center;
     justify-content: center;
+    background-color: rgb(32, 28, 28);
+    color: teal;
 
   }
   

@@ -50,7 +50,9 @@ const UpdateFood = () => {
                 const fid = `${foodid}`;
                 console.log("Starting axios call for fetchFood");
                 const responseData = 
-                await axios.get('http://localhost:5000/api/food/'+`${foodid}`,
+                // await axios.get('http://localhost:5000/api/food/'+`${foodid}`,
+                await axios.get(process.env.REACT_APP_BACKEND_URL+'/food/'+`${foodid}`,
+                
                     { headers: {
                     'Content-Type': 'application/json' , 
                     Authorization: 'Bearer '+ auth.token 
@@ -71,7 +73,9 @@ const UpdateFood = () => {
                  const fid = `${foodid}`;
                  console.log("Starting axios call for foodUpdateSubmitHandler ");
                  const responseData = 
-                   await axios.patch('http://localhost:5000/api/food/'+`${foodid}`,
+                //    await axios.patch('http://localhost:5000/api/food/'+`${foodid}`,
+                await axios.patch(process.env.REACT_APP_BACKEND_URL+'/food/'+`${foodid}`,
+                   
                    JSON.stringify({
                             name: formState.inputs.name.value,
                             details: formState.inputs.details.value,

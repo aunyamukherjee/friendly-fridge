@@ -21,7 +21,8 @@
     align-content: center;
     text-align: center;
     justify-content: center;
-    background-color: black;
+    background-color: rgb(32, 28, 28);
+    color: teal;
 
 
 
@@ -35,6 +36,8 @@
     align-content: center;
     text-align: center;
     justify-content: center;
+    background-color: rgb(32, 28, 28);
+    color: teal;
 
   }
   

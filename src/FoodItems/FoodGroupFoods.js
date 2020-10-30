@@ -27,7 +27,9 @@ const FoodGroupFoods = props => {
             const fgid = `${foodgroupid}`;
             console.log("Starting axios call for fetchfoodgroupfoods");
             const responseData = 
-              await axios.get('http://localhost:5000/api/food/foodgroup/'+`${foodgroupid}`,
+              // await axios.get('http://localhost:5000/api/food/foodgroup/'+`${foodgroupid}`,
+              await axios.get(process.env.REACT_APP_BACKEND_URL+'/food/foodgroup/'+`${foodgroupid}`,
+              
                 { headers: {
                 'Content-Type': 'application/json' , 
                 Authorization: 'Bearer '+ auth.token 

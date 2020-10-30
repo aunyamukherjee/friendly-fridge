@@ -35,7 +35,9 @@ const FoodItem = props => {
             const fid = `${foodid}`;
             console.log("Starting axios call for confirmDeleteHandler ");
             const responseData = 
-              await axios.delete('http://localhost:5000/api/food/'+`${foodid}`,
+              // await axios.delete('http://localhost:5000/api/food/'+`${foodid}`,
+              await axios.delete(process.env.REACT_APP_BACKEND_URL+'/food/'+`${foodid}`,
+              
                 { headers: {
                 'Content-Type': 'application/json' , 
                 Authorization: 'Bearer '+ auth.token 
@@ -54,7 +56,9 @@ const FoodItem = props => {
               const fid = `${foodid}`;
               console.log("Starting axios call for fetchIdentifiedFood");
               const responseData = 
-                await axios.get('http://localhost:5000/api/food/'+`${foodid}`,
+                // await axios.get('http://localhost:5000/api/food/'+`${foodid}`,
+                await axios.get(process.env.REACT_APP_BACKEND_URL+'/food/'+`${foodid}`,
+                
                   { headers: {
                   'Content-Type': 'application/json' , 
                   Authorization: 'Bearer '+ auth.token 
