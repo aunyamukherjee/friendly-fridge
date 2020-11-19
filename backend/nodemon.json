@@ -1,8 +1,8 @@
 {
     "env": {
-        "DB_USER": "ashish",
-        "DB_PASSWORD": "mernstack",
-        "DB_NAME": "friendlyfridge",
-        "JWT_KEY": "supersecret_dontshare"
+        "DB_USER": "",
+        "DB_PASSWORD": "",
+        "DB_NAME": "",
+        "JWT_KEY": ""
     }
 }
