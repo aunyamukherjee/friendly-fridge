@@ -76,7 +76,7 @@ import Auth from '../Auth/index.js';
         console.log('NewItem:itemSubmitHandler:qty='+formState.inputs.qty.value);
         console.log('NewItem:itemSubmitHandler:foodgroupid='+foodgroupid);
         await sendRequest(
-          'http://localhost:5000/api/food',
+          process.env.REACT_APP_BACKEND_URL+'/food',
           'POST',
           JSON.stringify({
             name: formState.inputs.name.value,

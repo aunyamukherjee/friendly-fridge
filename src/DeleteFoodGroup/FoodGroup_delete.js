@@ -39,7 +39,7 @@ const FoodGroup_delete = props => {
       setShowConfirmModal(false);
       try{
         await sendRequest(
-          'http://localhost:5000/api/foodgroups/'+`${foodgroupid}`,
+          process.env.REACT_APP_BACKEND_URL+'/foodgroups/'+`${foodgroupid}`,
           'DELETE',
           null,
           {

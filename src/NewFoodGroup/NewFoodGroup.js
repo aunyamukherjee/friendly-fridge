@@ -33,7 +33,7 @@ const NewFoodGroup = () => {
        event.preventDefault();
       try {
         await sendRequest(
-          'http://localhost:5000/api/foodgroups',
+          process.env.REACT_APP_BACKEND_URL+'/foodgroups',
           'POST',
           JSON.stringify({
             name: formState.inputs.name.value

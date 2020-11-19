@@ -3,6 +3,8 @@ FriendlyFridge is a cloud-enabled; React, node.js, Express, and MongoDB powered 
 - Easily access the contents of your fridge/pantry  
 - Organize Food Groupings as you choose  
 - Add, Update and Delete Food Items and Food Groups from within the app.
+- To see the app in action: click here:
+https://friendlyfridge-88be4.web.app/
 
 ### MVP Features! (Deliverables) - User authenticated  
 - Header and Side Bar Navigation  
